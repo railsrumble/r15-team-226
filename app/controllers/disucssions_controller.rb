@@ -1,6 +1,6 @@
 class DisucssionsController < ApplicationController
   before_action :set_disucssion, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :authenticate_owner!, only: [:new, :edit, :update, :destroy, :create]
 
   # GET /disucssions
   # GET /disucssions.json

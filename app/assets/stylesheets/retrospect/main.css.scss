@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url(font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,500,700");
+// @import url("https://fonts.googleapis.com/css?family=Raleway:400,500,700");
 
 /*
 	Retrospect by TEMPLATED
@@ -3331,7 +3331,7 @@
 			background-color: #1E2832;
 			color: rgba(255, 255, 255, 0.75);
 			background-attachment: fixed;
-			background-image: url("images/overlay.png"), url("../../images/pic11.jpg");
+			background-image: asset-url("overlay.png"), asset-url("pic11.jpg");
 			background-size: cover;
 		}
 
@@ -3879,7 +3879,7 @@
 		background-color: #1E2832;
 		color: rgba(255, 255, 255, 0.75);
 		background-attachment: fixed;
-		background-image: url("images/overlay.png"), url("../../images/banner.jpg");
+		background-image: asset-url("overlay.png"), asset-url("banner.jpg");
 		background-size: cover;
 		text-align: center;
 	}

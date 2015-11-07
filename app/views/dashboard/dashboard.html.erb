@@ -22,17 +22,21 @@
               <th>Pet type</th>
               <th>Breed</th>
               <th>Area</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
 
             <% @current_owner_pets.each do |pet| %>
+
             <tr>
-              <a href=<%= pet_show_path(pet) %>>
-                  <td><%= pet.try(:pet_type).capitalize %></td>
-                  <td><%= pet.try(:breed).capitalize %></td>
-                  <td><%= pet.try(:area).capitalize %></td>
-              </a>
+              <td><%= pet.try(:pet_type).capitalize %></td>
+              <td><%= pet.try(:breed).capitalize %></td>
+              <td><%= pet.try(:area).capitalize %></td>
+              <td><a href="<%= pet_show_path(pet) %>">View</a></td>
+              <td><a href="<%= edit_owner_pet_path(current_owner, pet) %>">Edit</a></td>
+              <td><a href="<%= owner_pet_path(current_owner, pet) %>" data-method='delete'>Delete</a></td>
             </tr>
             <% end %>
 
@@ -44,5 +48,37 @@
       </div>
     </div>
   </div>
-  <div class='col-sm-6'></div>
+  <div class='col-sm-6'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        Pets in your area
+      </div>
+      <div class=' panel-body'>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class='row'>
+  <div class='col-sm-6'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        Walk requests
+      </div>
+      <div class=' panel-body'>
+      </div>
+    </div>
+  </div>
+
+
+  <div class='col-sm-6'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        Owner friends
+      </div>
+      <div class=' panel-body'>
+      </div>
+    </div>
+  </div>
 </div>

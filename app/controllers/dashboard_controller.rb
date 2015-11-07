@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_owner!, only: [:dashboard]
   def index
-
+    render :index, :layout => 'dashboard'
   end
 
   def dashboard

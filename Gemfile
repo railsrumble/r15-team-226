@@ -45,5 +45,6 @@ group :development do
   gem 'spring'
 end
 
-
 gem 'devise'
+
+gem "better_errors"

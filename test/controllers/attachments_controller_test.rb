@@ -18,7 +18,7 @@ class AttachmentsControllerTest < ActionController::TestCase
 
   test "should create attachment" do
     assert_difference('Attachment.count') do
-      post :create, attachment: { attachable: @attachment.attachable, attachable_id: @attachment.attachable_id }
+      post :create, attachment: { attachable_id: @attachment.attachable_id, attachable_type: @attachment.attachable_type }
     end
 
     assert_redirected_to attachment_path(assigns(:attachment))
@@ -35,7 +35,7 @@ class AttachmentsControllerTest < ActionController::TestCase
   end
 
   test "should update attachment" do
-    patch :update, id: @attachment, attachment: { attachable: @attachment.attachable, attachable_id: @attachment.attachable_id }
+    patch :update, id: @attachment, attachment: { attachable_id: @attachment.attachable_id, attachable_type: @attachment.attachable_type }
     assert_redirected_to attachment_path(assigns(:attachment))
   end
 

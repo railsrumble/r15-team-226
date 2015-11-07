@@ -2,8 +2,8 @@
 
 one:
   attachable_id: 1
-  attachable: 
+  attachable_type: MyString
 
 two:
   attachable_id: 1
-  attachable: 
+  attachable_type: MyString

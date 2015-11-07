@@ -70,6 +70,6 @@ class DisucssionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disucssion_params
-      params.require(:disucssion).permit(:topic, :content, :type, :breed)
+      params.require(:disucssion).permit(:topic, :content, :disucssion_type, :breed)
     end
 end

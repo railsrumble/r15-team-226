@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+// require turbolinks
+// require_tree .
+// require retrospect/jquery.min
+//= require retrospect/skel.min
+//= require retrospect/util
+// require retrospect/ie/respond.min
+//= require retrospect/main
+// require_tree ./retrospect/ie

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :owners
   resources :messages
   resources :pets
   resources :attachments

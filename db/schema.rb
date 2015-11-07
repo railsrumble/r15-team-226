@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151107053223) do
-
-  create_table "messages", force: :cascade do |t|
-    t.string   "subject"
-    t.text     "content"
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.boolean  "read"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-=======
-ActiveRecord::Schema.define(version: 20151107052042) do
+ActiveRecord::Schema.define(version: 20151107054414) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -48,6 +36,16 @@ ActiveRecord::Schema.define(version: 20151107052042) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "content"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.boolean  "read"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -68,7 +66,7 @@ ActiveRecord::Schema.define(version: 20151107052042) do
     t.text     "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> 32bfa0497239e3183c9d3cf8901fb3b8b8f49426
+    t.integer  "owner_id"
   end
 
 end

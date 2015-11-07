@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   end
 
   def dashboard
-
+    @current_owner_pets = current_owner.pets
 
   end
 

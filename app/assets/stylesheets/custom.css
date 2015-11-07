@@ -1,0 +1,9 @@
+.form-label{
+font-size: 20px;
+text-align: right;
+}
+
+.form-group{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

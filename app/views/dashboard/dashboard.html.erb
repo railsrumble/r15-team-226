@@ -1,11 +1,48 @@
-<h2>THis is the dashboard page for happy paws users</h2>
+<h2>Owner dashboard</h2>
 
 
 <ul>
-  <li><%= link_to 'Add your pet', new_pet_path %></li>
-  <li><%= link_to 'Add your pet' %></li>
-  <li><%= link_to 'Add your pet' %></li>
-  <li><%= link_to 'Add your pet' %></li>
-  <li><%= link_to 'Add your pet' %></li>
+
+
 
 </ul>
+
+<div class='row'>
+  <div class='col-sm-6'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        Your Pets
+        <%= link_to 'Add your pet', new_owner_pet_path(current_owner), class: 'btn btn-primary pull-right' %>
+      </div>
+      <div class=' panel-body'>
+        <% if @current_owner_pets.present? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Pet type</th>
+              <th>Breed</th>
+              <th>Area</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @current_owner_pets.each do |pet| %>
+            <tr>
+              <a href=<%= pet_show_path(pet) %>>
+                  <td><%= pet.try(:pet_type).capitalize %></td>
+                  <td><%= pet.try(:breed).capitalize %></td>
+                  <td><%= pet.try(:area).capitalize %></td>
+              </a>
+            </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+        <% else %>
+        <div class="alert alert-warning" role="alert">You haven't yet added any pets.</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-6'></div>
+</div>

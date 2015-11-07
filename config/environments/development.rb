@@ -38,4 +38,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.action_mailer.perform_deliveries = true # Set it to false to disable the email in dev mode
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
+
+  ActionMailer::Base.smtp_settings = {
+      :address => "smtp.mandrillapp.com",
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => :true,
+      :user_name => "fazalvjit81@gmail.com",
+      :password => "dt9E5qs9RCKZ5-Xr0lUPOg"
+  }
 end

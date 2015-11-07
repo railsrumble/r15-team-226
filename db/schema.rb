@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107062642) do
+ActiveRecord::Schema.define(version: 20151107104916) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20151107062642) do
     t.string   "commentable_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.text     "content"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string   "topic"
+    t.text     "content"
+    t.string   "discussion_type"
+    t.string   "breed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "disucssions", force: :cascade do |t|

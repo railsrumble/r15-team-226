@@ -1,0 +1,20 @@
+<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2><%= @discussion.topic %></h2>
+					</header>
+
+					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
+					<p><%= @discussion.content %></p>
+        </br>
+          <p>BREED: <%= @discussion.breed %></p>
+          <p class="pull-right">TYPE: <%= @discussion.discussion_type %></p>
+
+
+     <div id="comment_list">
+      <%= render :partial => 'comments/comments_list', locals: {discussion: @discussion }%>
+     </div>
+
+        </div>
+			</section>

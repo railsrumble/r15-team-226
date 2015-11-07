@@ -3,11 +3,11 @@
 one:
   topic: MyString
   content: MyText
-  type: 
+  discussion_type: MyString
   breed: MyString
 
 two:
   topic: MyString
   content: MyText
-  type: 
+  discussion_type: MyString
   breed: MyString

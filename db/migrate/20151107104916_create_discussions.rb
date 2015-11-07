@@ -1,9 +1,9 @@
-class CreateDisucssions < ActiveRecord::Migration
+class CreateDiscussions < ActiveRecord::Migration
   def change
-    create_table :disucssions do |t|
+    create_table :discussions do |t|
       t.string :topic
       t.text :content
-      t.string :type
+      t.string :discussion_type
       t.string :breed
 
       t.timestamps null: false

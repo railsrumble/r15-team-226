@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Disucssions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Content</th>
+      <th>Type</th>
+      <th>Breed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @disucssions.each do |disucssion| %>
+      <tr>
+        <td><%= disucssion.topic %></td>
+        <td><%= disucssion.content %></td>
+        <td><%= disucssion.type %></td>
+        <td><%= disucssion.breed %></td>
+        <td><%= link_to 'Show', disucssion %></td>
+        <td><%= link_to 'Edit', edit_disucssion_path(disucssion) %></td>
+        <td><%= link_to 'Destroy', disucssion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Disucssion', new_disucssion_path %>

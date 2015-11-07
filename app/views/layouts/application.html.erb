@@ -3,7 +3,7 @@
 <head>
   <title>HappyPaws</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <%= csrf_meta_tags %>
 </head>
 <body class="landing">
@@ -16,8 +16,6 @@
 
   <!-- Nav -->
   <%= render 'layouts/nav_bar' %>
-
-
   <section id="main" class="wrapper">
     <div class="container">
     <%= yield %>
@@ -49,5 +47,10 @@
     </div>
   </footer>
   <%= javascript_include_tag 'application'%>
+
 </body>
+
+
+
+
 </html>

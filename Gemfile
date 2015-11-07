@@ -49,5 +49,6 @@ end
 
 gem 'devise'
 
+
 # For uploading files
 gem 'dragonfly', '~> 1.0.3'

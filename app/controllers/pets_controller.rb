@@ -29,7 +29,7 @@ class PetsController < ApplicationController
 
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to owner_dashboard_path, notice: 'Pet was successfully created.' }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new }
@@ -70,6 +70,6 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:pet_type, :breed, :gender, :age, :name, :area, :color, :location)
+      params.require(:pet).permit(:pet_type, :breed, :gender, :age, :name, :area, :color, :location, :owner_id)
     end
 end

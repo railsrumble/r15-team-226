@@ -11,19 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.text_field :owner_id %>
-  </div>
+
   <div class="field">
     <%= f.label :pet_id %><br>
-    <%= f.text_field :pet_id %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.select :pet_id, current_owner.pets.collect{|p| [p.name,p.id]} %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Send Request' %>
   </div>
 <% end %>

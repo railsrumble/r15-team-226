@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require retrospect/skel.min
+//= require retrospect/util
+//= require retrospect/main
 //= require bootstrap.min
-// require_tree .

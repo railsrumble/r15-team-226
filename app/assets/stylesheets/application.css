@@ -10,11 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- * require_tree .
  *= require bootstrap.min
- * require bootstrap-theme.min
- *= require custom
- *= require font-awesome.min
- *= require main
+ *= require bootstrap-theme.min
+ * require_tree .
  *= require_self
+ *= require ./retrospect/main.css
+ *= require custom
  */

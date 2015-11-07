@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<div class="pull-right">
+<%= link_to 'Post Adoption request', new_adoption_request_path, :class => 'button small' %>
+</div>
 <h1>Listing Adoption Requests</h1>
 
 <table>
@@ -27,5 +29,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Adoption request', new_adoption_request_path %>

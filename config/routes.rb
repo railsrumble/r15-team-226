@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :owners do
     resources :pets
   end
+  resources :pets
 
   get 'pets/:id' => 'pets#show', as: 'pet_show'
   # The priority is based upon order of creation: first created -> highest priority.

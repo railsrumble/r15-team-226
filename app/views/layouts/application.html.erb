@@ -1,46 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Happy paws</title>
-  <meta charset="utf-8" />
+  <title>HappyPaws</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="landing">
 
   <!-- Header -->
-  <header id="header">
-    <h1><a href="index.html">Happy paws</a></h1>
-    <% if current_owner.present? %>
-    <%= link_to "Sign out", destroy_owner_session_path, { method: :delete } %> &nbsp;| &nbsp;
-    <%= link_to "Dashboard", owner_dashboard_path %>
-    <% else  %>
-    <%= link_to "Sign in", new_owner_session_path %>
-    &nbsp&nbsp
-    <%= link_to "Sign up", new_owner_registration_path %>
-    <% end %>
+  <header id="header" class="skel-layers-fixed">
+    <h1><a href="index.html">HappyPaws</a></h1>
     <a href="#nav">Menu</a>
   </header>
 
   <!-- Nav -->
-  <nav id="nav">
-    <ul class="links">
-      <li><a href="index.html">Dashboard</a></li>
-      <li><a href="generic.html">Generic</a></li>
-      <li><a href="elements.html">Elements</a></li>
-    </ul>
-  </nav>
-</br>
-<div id='alert-area'>
-  <%= show_flash_message(flash) %>
-</div>
-
-  <!-- Main -->
+  <%= render 'layouts/nav_bar' %>
   <section id="main" class="wrapper">
     <div class="container">
-      <%= yield %>
+    <%= yield %>
     </div>
   </section>
 
@@ -68,8 +46,8 @@
       </ul>
     </div>
   </footer>
+  <%= javascript_include_tag 'application'%>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107053223) do
+ActiveRecord::Schema.define(version: 20151107060348) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20151107053223) do
     t.text     "content"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "read",        default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "owners", force: :cascade do |t|

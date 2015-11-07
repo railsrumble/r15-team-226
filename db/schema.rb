@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107073129) do
+ActiveRecord::Schema.define(version: 20151107104916) do
 
   create_table "adoption_requests", force: :cascade do |t|
     t.integer  "owner_id"
@@ -44,15 +44,6 @@ ActiveRecord::Schema.define(version: 20151107073129) do
     t.string   "topic"
     t.text     "content"
     t.string   "discussion_type"
-    t.string   "breed"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "disucssions", force: :cascade do |t|
-    t.string   "topic"
-    t.text     "content"
-    t.string   "disucssion_type"
     t.string   "breed"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151107062642) do
   create_table "owners", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
+    t.string   "email",                  default: "", null: false
     t.string   "contact_number"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false

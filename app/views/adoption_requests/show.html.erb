@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @adoption_request.owner %>
+</p>
+
+<p>
+  <strong>Pet:</strong>
+  <%= @adoption_request.pet %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @adoption_request.status %>
+</p>
+
+<%= link_to 'Edit', edit_adoption_request_path(@adoption_request) %> |
+<%= link_to 'Back', adoption_requests_path %>

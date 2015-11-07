@@ -11,13 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107062642) do
+ActiveRecord::Schema.define(version: 20151107073129) do
+
+  create_table "adoption_requests", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "pet_id"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "adoption_requests", ["owner_id"], name: "index_adoption_requests_on_owner_id"
+  add_index "adoption_requests", ["pet_id"], name: "index_adoption_requests_on_pet_id"
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "file_uid"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -30,10 +42,10 @@ ActiveRecord::Schema.define(version: 20151107062642) do
   create_table "disucssions", force: :cascade do |t|
     t.string   "topic"
     t.text     "content"
-    t.string   "type"
+    t.string   "disucssion_type"
     t.string   "breed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "messages", force: :cascade do |t|

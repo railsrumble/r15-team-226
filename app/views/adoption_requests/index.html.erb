@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Adoption Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Pet</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adoption_requests.each do |adoption_request| %>
+      <tr>
+        <td><%= adoption_request.owner %></td>
+        <td><%= adoption_request.pet %></td>
+        <td><%= adoption_request.status %></td>
+        <td><%= link_to 'Show', adoption_request %></td>
+        <td><%= link_to 'Edit', edit_adoption_request_path(adoption_request) %></td>
+        <td><%= link_to 'Destroy', adoption_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adoption request', new_adoption_request_path %>

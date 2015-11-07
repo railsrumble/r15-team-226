@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :adoption_requests
   devise_for :owners
   resources :messages
   resources :pets

@@ -48,4 +48,7 @@ group :development do
 end
 
 gem 'devise'
-gem 'jquery-rails'
+
+
+# For uploading files
+gem 'dragonfly', '~> 1.0.3'

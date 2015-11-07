@@ -51,9 +51,13 @@ ActiveRecord::Schema.define(version: 20151107054414) do
     t.string   "last_name"
     t.string   "email"
     t.string   "contact_number"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "sign_in_count",      default: 0, null: false
+    t.string   "current_sign_in_ip"
   end
+
+  add_index "owners", ["email"], name: "index_owners_on_email", unique: true
 
   create_table "pets", force: :cascade do |t|
     t.string   "pet_type"

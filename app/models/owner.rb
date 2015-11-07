@@ -3,7 +3,7 @@ class Owner < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :pets, dependent: :destroy
   has_many :attachments, :as => :attachable
   has_many :messages_as_sender, class_name: "Message", foreign_key: :sender_id

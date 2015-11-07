@@ -2,17 +2,26 @@ Rails.application.routes.draw do
   resources :discussions do
     resources :comments
   end
+  resources :adoption_requests
   devise_for :owners
   resources :messages
-  resources :pets
+
   resources :attachments
   resources :comments
-  resources :owners
+
+  resources :disucssions
+  resources :owners do
+    resources :pets
+  end
+
+  get 'pets/:id' => 'pets#show', as: 'pet_show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'dashboard#index'
+   root 'dashboard#homepage'
+
+   get 'owner_dashboard' => 'dashboard#dashboard'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

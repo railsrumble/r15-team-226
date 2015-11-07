@@ -12,4 +12,5 @@ class Owner < ActiveRecord::Base
   def messages
     self.messages_as_sender + self.messages_as_receiver
   end
+  has_many :adoption_requests
 end

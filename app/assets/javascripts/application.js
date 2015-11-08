@@ -20,3 +20,4 @@
 //= require ./bootstrap-image-gallery/blueimp-gallery.min
 //= require find
 //= require custom
+//= require pet

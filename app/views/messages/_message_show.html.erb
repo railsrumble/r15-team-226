@@ -1,0 +1,18 @@
+<p class="pull-right small"><%= message.created_at.strftime("%d-%m-%Y %I:%M %p") %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= message.subject %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= message.content %>
+</p>
+
+<p><strong>Attachments:</strong>
+  <% message.attachments.each do |attachment| %>
+   <a href="<%= attachment.file.url %>"><%= attachment.file.name%></a>
+   &nbsp&nbsp
+  <% end %>
+</p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108050642) do
+ActiveRecord::Schema.define(version: 20151108094947) do
 
   create_table "adoption_requests", force: :cascade do |t|
     t.integer  "owner_id"
@@ -45,7 +45,10 @@ ActiveRecord::Schema.define(version: 20151108050642) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.text     "content"
+    t.integer  "user_id"
   end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "discussions", force: :cascade do |t|
     t.string   "topic"
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 20151108050642) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "image_uid"
   end
 
   add_index "owners", ["confirmation_token"], name: "index_owners_on_confirmation_token", unique: true

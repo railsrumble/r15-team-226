@@ -1,0 +1,3 @@
+console.log('Hai');
+$("#comment_list").append("<%= escape_javascript(render :partial => 'comments/comment_show', locals: {comment: @comment }) %>");
+console.log('Bye');

@@ -4,7 +4,9 @@
     <li><a href="<%= owner_dashboard_path %>">Dashboard</a></li>
     <li><a href="<%= pets_path %>">Pets</a></li>
     <li><a href="<%= discussions_path %>">Disucssions</a></li>
-    <li><a href="<%= messages_path %>" id="message-count">Messages (<%= current_owner.messages_as_receiver.where(read: false).count%>)</a></li>
+    <% if current_owner.present? %>
+      <li><a href="<%= messages_path %>" id="message-count">Messages (<%= current_owner.messages_as_receiver.where(read: false).count%>)</a></li>
+    <% end %>
     <li><a href="<%= adoption_requests_path %>">Adoption Requests</a></li>
     <% if current_owner.present? %>
       <li><%= link_to "Sign out", destroy_owner_session_path, { method: :delete } %></li>

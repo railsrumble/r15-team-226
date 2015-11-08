@@ -42,7 +42,7 @@
 <div id="links">
   <% @pet.attachments.each do |attachment| %>
     <a href="<%= attachment.file.url %>" title="<%= @pet.name %>" data-gallery>
-      <%= image_tag attachment.file.url %>
+      <%= image_tag attachment.file.url, size: '120x120' %>
     </a>
   <% end %>
 </div>

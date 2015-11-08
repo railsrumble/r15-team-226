@@ -26,8 +26,9 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
+    p "======================"
+    p pet_params
     @pet = Pet.new(pet_params)
-
     respond_to do |format|
       if @pet.save
         format.html { redirect_to owner_dashboard_path, notice: 'Pet was successfully created.' }
@@ -68,7 +69,12 @@ class PetsController < ApplicationController
   p "=================params=================="
   p params
   @pets = {}
-  #@pets = Pet.get_pets(pet_params)
+  #@pets = Pet.near(params["address"])
+  #@pets = Pet.get_pets(params)
+  #[current_user.latitude, current_user.longitude], 50, :order => :distance
+  @pets = Pet.near([params["latitude"],params["longitude"]],50)
+  p "======RESULT PETS++++++++++++++++++++"
+  p @pets
   respond_to do |format|
     #add latitude and longitude to result
 			format.json { render json: {pets: @pets.to_json} } #, lat: lat, lng: lng

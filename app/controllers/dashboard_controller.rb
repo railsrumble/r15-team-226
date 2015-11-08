@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
 
 
   def homepage
-
+    render :layout => 'dashboard'
 
   end
 

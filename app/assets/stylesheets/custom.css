@@ -10,3 +10,8 @@ text-align: right;
 a, u {
     text-decoration: none;
 }
+.message-panel, .message-list
+{
+    height:60vh;
+    overflow-y: scroll;
+}

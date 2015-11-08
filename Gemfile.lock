@@ -156,6 +156,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  arel
   better_errors
   binding_of_caller
   byebug
@@ -171,3 +172,6 @@ DEPENDENCIES
   spring
   sqlite3
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.10.6

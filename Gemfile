@@ -54,3 +54,5 @@ gem 'devise'
 gem 'dragonfly', '~> 1.0.3'
 
 gem 'geocoder'
+
+gem 'arel'

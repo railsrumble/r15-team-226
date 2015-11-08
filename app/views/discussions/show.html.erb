@@ -9,12 +9,14 @@
 </br>
 <p><strong>BREED:</strong> <%= @discussion.breed %></p>
 <!-- <p class="pull-right">TYPE: <%= @discussion.discussion_type %></p> -->
+<% if @discussion.attachments.present? %>
 <p><strong>Attachments:</strong>
 	<% @discussion.attachments.each do |attachment| %>
 	<a href="<%= attachment.file.url %>"><%= attachment.file.name%></a>
 	&nbsp&nbsp
 	<% end %>
 </p>
+<% end %>
 
 
 <%= render :partial => 'comments/comments_list', locals: {discussion: @discussion }%>

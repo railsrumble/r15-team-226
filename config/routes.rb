@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :adoption_responses
   end
   devise_for :owners
-  resources :messages
+  resources :messages do
+    get :user_messages, :on => :collection
+  end
 
   resources :attachments
   resources :comments

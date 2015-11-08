@@ -15,6 +15,7 @@ class AdoptionRequestsController < ApplicationController
   # GET /adoption_requests/new
   def new
     @adoption_request = AdoptionRequest.new
+    @adoption_request.build_pet
   end
 
   # GET /adoption_requests/1/edit
@@ -69,6 +70,6 @@ class AdoptionRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adoption_request_params
-      params.require(:adoption_request).permit(:owner_id, :pet_id, :status)
+      params.require(:adoption_request).permit(:owner_id, :pet_id, :status, pet_attributes: [:pet_type, :breed, :gender, :age, :name, :area, :color, :location, :owner_id, attachments_attributes: [:file]])
     end
 end

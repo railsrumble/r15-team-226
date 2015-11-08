@@ -17,8 +17,8 @@
   <tbody>
     <% @adoption_requests.each do |adoption_request| %>
       <tr>
-        <td><%= adoption_request.owner %></td>
-        <td><%= adoption_request.pet %></td>
+        <td><%= adoption_request.owner.name_or_email %></td>
+        <td><%= adoption_request.pet.name if adoption_request.pet %></td>
         <td><%= adoption_request.status %></td>
         <td><%= link_to 'Show', adoption_request %></td>
         <td><%= link_to 'Edit', edit_adoption_request_path(adoption_request) %></td>

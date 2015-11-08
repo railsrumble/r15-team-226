@@ -16,6 +16,7 @@
 //= require retrospect/util
 //= require retrospect/main
 //= require bootstrap.min
-//= require ./bootstrap-image-gallery/bootstrap-image-gallery.min
+// require ./bootstrap-image-gallery/bootstrap-image-gallery.min
 //= require ./bootstrap-image-gallery/blueimp-gallery.min
+//= require find
 //= require custom

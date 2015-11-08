@@ -62,6 +62,18 @@ class PetsController < ApplicationController
     end
   end
 
+  #get pets in particular location
+  def get_pets
+  p "=================params=================="
+  p params
+  @pets = {}
+  #@pets = Pet.get_pets(pet_params)
+  respond_to do |format|
+    #add latitude and longitude to result
+			format.json { render json: {pets: @pets.to_json} } #, lat: lat, lng: lng
+		end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet

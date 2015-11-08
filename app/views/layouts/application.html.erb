@@ -18,6 +18,11 @@
   <%= render 'layouts/nav_bar' %>
   <section id="main" class="wrapper">
     <div class="container">
+      <div class='alert-area'>
+        <% unless flash[:notice].blank? %>
+          <%= show_flash_message(flash) %>
+       <% end %>
+    </div>
     <%= yield %>
     </div>
   </section>

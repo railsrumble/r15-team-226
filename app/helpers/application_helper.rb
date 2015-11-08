@@ -9,10 +9,10 @@ module ApplicationHelper
       when 'alert'
         'danger'
       end
-      str += "<div class='alert alert-#{alert_type} alert-dismissable margin-top-20'>\
-         <button aria-hidden='true' data-dismiss='alert' class='close' type='button'>x</button>\
+      str += "<div class='alert alert-#{alert_type} alert-dismissable alert-fade margin-top-20'>\
+         <div aria-hidden='true' data-dismiss='alert' class='close' type='button'>x</div>\
          <center>\
-           <strong>#{ flash.send(key) if flash.respond_to? key }</strong>\
+           #{ flash.send(key) if flash.respond_to? key }\
          </center>\
       </div>"
     end

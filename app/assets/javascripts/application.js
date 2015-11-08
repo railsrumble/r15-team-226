@@ -18,3 +18,4 @@
 //= require bootstrap.min
 //= require ./bootstrap-image-gallery/bootstrap-image-gallery.min
 //= require ./bootstrap-image-gallery/blueimp-gallery.min
+//= require custom

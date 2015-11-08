@@ -4,4 +4,9 @@ class AdoptionRequest < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :adoption_responses, dependent: :destroy
   accepts_nested_attributes_for :pet
+
+
+  def created_by_current_owner?(current_owner)
+    owner == current_owner
+  end
 end

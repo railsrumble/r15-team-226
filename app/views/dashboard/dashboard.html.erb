@@ -9,7 +9,7 @@
 
 <div class='row'>
   <div class='col-sm-6'>
-    <div class='panel panel-default'>
+    <div class='panel panel-info' style="min-height: 350px;">
       <div class='panel-heading'>
         Your Pets
         <%= link_to 'Add your pet', new_owner_pet_path(current_owner), class: 'btn btn-primary pull-right' %>
@@ -43,15 +43,15 @@
           </tbody>
         </table>
         <% else %>
-        <div class="alert alert-warning" role="alert">You haven't yet added any pets.</div>
+        <div class="alert alert-warning" role="alert">We didn't find any pets in our system owned by you.</div>
         <% end %>
       </div>
     </div>
   </div>
   <div class='col-sm-6'>
-    <div class='panel panel-default'>
+    <div class='panel panel-info' style="min-height: 350px;">
       <div class='panel-heading'>
-        Pets in your area
+        Walk requests
       </div>
       <div class=' panel-body'>
       </div>
@@ -62,20 +62,79 @@
 
 <div class='row'>
   <div class='col-sm-6'>
-    <div class='panel panel-default'>
+    <div class='panel panel-info' style="min-height: 350px;">
       <div class='panel-heading'>
-        Walk requests
+        Adoption Requests
       </div>
       <div class=' panel-body'>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#current_owner_raised" role="tab" data-toggle="tab">You raised</a></li>
+          <li><a href="#current_owner_responded" role="tab" data-toggle="tab">You resonded to</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="current_owner_raised">
+            <% if current_owner.adoption_requests.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Pet Name</th>
+                    <th>Pet Type</th>
+                    <th>No. of responses</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% current_owner.adoption_requests.each do |adoption_request| %>
+                    <tr>
+                      <td><%= adoption_request.pet.name %></td>
+                      <td><%= adoption_request.pet.pet_type %></td>
+                      <td><%= adoption_request.adoption_responses.count %></td>
+                      <td><%= link_to "View Details", adoption_request_path(adoption_request) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+            <div class="alert alert-warning" role="alert">We couldn't find any any adoption request created by you.</br>Probably you didn't create any. Create <a href="<%= new_adoption_request_path %>">here</a></div>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="current_owner_responded">
+            <% if current_owner.adoption_responses.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Pet Name</th>
+                    <th>Pet Type</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% current_owner.adoption_responses.each do |adoption_reponse| %>
+                  <tr>
+                    <td><%= adoption_reponse.adoption_request.pet.name %></td>
+                    <td><%= adoption_reponse.adoption_request.pet.pet_type %></td>
+                    <td><%= adoption_reponse.adoption_request.status %></td>
+                    <!-- <td><%= link_to "View Details", adoption_request_adoption_response_path(adoption_reponse.adoption_request, adoption_reponse) %></td> -->
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <div class="alert alert-warning" role="alert">We couldn't find any adoption response made by you.</br>Probably you didn't made any. Respond to adoption requests <a href="<%= adoption_requests_path %>">here</a></div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
 
   <div class='col-sm-6'>
-    <div class='panel panel-default'>
+    <div class='panel panel-info' style="min-height: 350px;">
       <div class='panel-heading'>
-        Owner friends
+        Pets in your area
       </div>
       <div class=' panel-body'>
       </div>

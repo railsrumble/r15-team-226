@@ -43,7 +43,7 @@ class OwnersController < ApplicationController
   def update
     respond_to do |format|
       if @owner.update(owner_params)
-        format.html { redirect_to @owner, notice: 'Owner was successfully updated.' }
+        format.html { redirect_to edit_owner_url(@owner), notice: 'Successfully updated.' }
         format.json { render :show, status: :ok, location: @owner }
       else
         format.html { render :edit }
@@ -70,6 +70,6 @@ class OwnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
-      params.require(:owner).permit(:first_name, :last_name, :email, :contact_number)
+      params.require(:owner).permit(:first_name, :last_name, :email, :contact_number, :image)
     end
 end

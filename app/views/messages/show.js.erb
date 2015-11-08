@@ -1,0 +1,2 @@
+$(".show-message").html("<%= escape_javascript(render partial: 'messages/message_show', locals: { message: @message } ) %>");
+$('#message-count').html('<li><a href="<%= messages_path %>" id="message-count" style="color:#F9FBFA;">Messages (<%= current_owner.messages_as_receiver.where(read: false).count%>)</a></li>');

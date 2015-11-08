@@ -4,12 +4,16 @@
     <li><a href="<%= owner_dashboard_path %>">Dashboard</a></li>
     <li><a href="<%= pets_path %>">Pets</a></li>
     <li><a href="<%= discussions_path %>">Disucssions</a></li>
-    <li><a href="<%= messages_path %>">Messages</a></li>
+    <% if current_owner.present? %>
+      <li><a href="<%= messages_path %>" id="message-count">Messages (<%= current_owner.messages_as_receiver.where(read: false).count%>)</a></li>
+    <% end %>
     <li><a href="<%= adoption_requests_path %>">Adoption Requests</a></li>
     <% if current_owner.present? %>
+      <li><a href="<%= edit_owner_path(current_owner) %>">EditProfile</a></li>
       <li><%= link_to "Sign out", destroy_owner_session_path, { method: :delete } %></li>
     <% else %>
       <li><a href="<%= new_owner_session_path %>">Sign in</a></li>
+      <li><a href="<%= new_owner_registration_path %>">Sign up</a></li>
     <% end %>
   </ul>
 </nav>

@@ -1,3 +1,4 @@
+<div class="col-lg-8">
 <%= form_for(@owner) do |f| %>
   <% if @owner.errors.any? %>
     <div id="error_explanation">
@@ -27,7 +28,12 @@
     <%= f.label :contact_number %><br>
     <%= f.text_field :contact_number %>
   </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

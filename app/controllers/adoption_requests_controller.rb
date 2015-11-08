@@ -29,7 +29,7 @@ class AdoptionRequestsController < ApplicationController
 
     respond_to do |format|
       if @adoption_request.save
-        format.html { redirect_to @adoption_request, notice: 'Adoption request was successfully created.' }
+        format.html { redirect_to adoption_requests_path, notice: 'Adoption request was successfully created.' }
         format.json { render :show, status: :created, location: @adoption_request }
       else
         format.html { render :new }

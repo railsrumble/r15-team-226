@@ -16,6 +16,11 @@ class DashboardController < ApplicationController
 
   end
 
+  #Get Google map
+  def find
+    render :layout => 'find'
+  end
+
   def get_current_user_location
     respond_to do |format|
 			if Rails.env.production?

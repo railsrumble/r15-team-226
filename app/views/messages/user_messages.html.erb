@@ -1,0 +1,23 @@
+<% @messages.each do |message| %>
+<% sender = (message.sender_id == @user.id) ? @user : current_owner %>
+<div class="row">
+  <div class="col-md-1 portfolio-item">
+    <a href="#">
+      <img src="<%=  sender.image.try(:remote_url) %>" class="img-circle" height="20" >
+    </a>
+    <h5>
+      <a href="#"><%= sender.first_name %></a>
+    </h5>
+
+  </div>
+  <div class="col-md-11">
+    <p><%= time_ago_in_words(message.created_at) %> ago</p>
+    <p><%= message.content %></p>
+    <% message.attachments.present? %>
+    <% message.attachments.each do |a| %>
+    <p><a href='<%= a.file.remote_url %>' target="_blank"><%= File.basename(a.file.remote_url) %> </a></p>
+    <% end %>
+  </div>
+</div>
+
+<% end %>

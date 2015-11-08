@@ -1,5 +1,5 @@
 var map;
-var zoom_level = 8;
+var zoom_level = 11;
 var center;
 var lat;
 var lng;
@@ -7,39 +7,125 @@ var marker;
 var markers = [];
 var infowindow;
 var place;
+var distanceWidget; // A widget with the circle and two-markers: one at the center, and one functioning as re-sizer.
+var image;
+
+// function getUserLocation(){
+//
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(success, error);
+//   } else {
+//     error('not supported');
+//   }
+//
+//   function success(position) {
+//     console.log("========navigator.geolocation=====success============");
+//     lat = position.coords.latitude;
+//     lng = position.coords.longitude;
+//     console.log("location is " + position + "=====" + position.coords.latitude + "====" + position.coords.longitude );
+//     center = new google.maps.LatLng(lat,lng);
+//     //displayMarkers({lat: lat, lng: lng});
+//     // map = new google.maps.Map(document.getElementById('map'), {
+//     // center: center,
+//     // zoom: zoom_level,
+//     // mapTypeId: google.maps.MapTypeId.ROADMAP
+//     // });
+//     $.ajax({
+//     type: 'get',
+//     url: '/get_location_name',
+//     data: {lat: lat, lng: lng},
+//     dataType: 'json',
+//     success: function(data) {
+//       if (data != false) {
+//         $("#pac-input").val(data.result.replace(/\"/g, ""));
+//       } else {
+//       }
+//     }
+//     });
+//
+//   }
+//
+//   function error(position){
+//     console.log("=========ERROr-======================");
+//   }
+//
+//
+// }
+
 
 //Map intialization
 function initAutocomplete() {
 
-  $.ajax({
-type: 'get',
-url: '/get_current_user_location/',
-dataType: 'json',
-success: function(data) {
-if (data != false) {
-  lat = data["lattitude"];
-  lng = data["longitude"];
-  address = data["address"]
-  center = new google.maps.LatLng(lat, lng);
-  $("#pac-input").val(address);
-  displayMarkers({address: address, lat: lat, lng: lng});
 
-  map = new google.maps.Map(document.getElementById('map'), {
-  center: center,
-  zoom: zoom_level,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  var position = new google.maps.LatLng(center.lat(), center.lng());
-  marker = new google.maps.Marker({
-    position: position,
-    map: map,
-    zoom: zoom_level
-  });
+
+//   $.ajax({
+// type: 'get',
+// url: '/get_current_user_location/',
+// dataType: 'json',
+// success: function(data) {
+// if (data != false) {
+//   lat = data["lattitude"];
+//   lng = data["longitude"];
+//   address = data["address"]
+//   center = new google.maps.LatLng(lat, lng);
+//   $("#pac-input").val(address);
+//   //displayMarkers({address: address, lat: lat, lng: lng});
+//
+// map = new google.maps.Map(document.getElementById('map'), {
+// center: center,
+// zoom: zoom_level,
+// mapTypeId: google.maps.MapTypeId.ROADMAP
+// });
+//   var position = new google.maps.LatLng(center.lat(), center.lng());
+//   marker = new google.maps.Marker({
+//     position: position,
+//     map: map,
+//     zoom: zoom_level
+//   });
+// } else {
+// }
+// }
+// });
+
+//getUserLocation();
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
 } else {
+  error('not supported');
 }
-}
-});
 
+function success(position) {
+  console.log("========navigator.geolocation=====success============");
+  lat = position.coords.latitude;
+  lng = position.coords.longitude;
+  console.log("location is " + position + "=====" + position.coords.latitude + "====" + position.coords.longitude );
+  center = new google.maps.LatLng(lat,lng);
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: center,
+    zoom: zoom_level,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  displayMarkers({lat: lat, lng: lng});
+
+  // $.ajax({
+  // type: 'get',
+  // url: '/get_location_name',
+  // data: {lat: lat, lng: lng},
+  // dataType: 'json',
+  // success: function(data) {
+  //   if (data != false) {
+  //     $("#pac-input").val(data.result.replace(/\"/g, ""));
+  //   } else {
+  //   }
+  // }
+  // });
+
+}
+
+function error(position){
+  console.log("=========ERROr-======================");
+}
 
 }
 
@@ -137,9 +223,11 @@ $.ajax({
   data: {address: param["address"], latitude: param["lat"], longitude: param["lng"]},
   dataType: 'json',
   success: function(result) {
-    if (result.lat) center = new google.maps.LatLng(result.latitude, result.longitude);
+    center = new google.maps.LatLng(result.lat, result.lng);
     var latlng  = [];
     var doggies = JSON.parse(result.pets);
+
+    $("#pac-input").val(result.location.replace(/\"/g, ""));
     $.each(doggies, function(index, object) {
       if (object.area) {
         //latlng.push(new google.maps.LatLng(object.location.latitude, object.location.longitude));
@@ -160,13 +248,22 @@ $.ajax({
 
       if (object.area) {
 
+        image = {
+          url: "<%= asset_path 'dog-icon.png' %>"//,
+          //size: new google.maps.Size(100, 150),
+          //origin: new google.maps.Point(0, 0),
+          //anchor: new google.maps.Point(0, 32)
+        };
+
         var position = new google.maps.LatLng(object.latitude, object.longitude);
         marker = new google.maps.Marker({
           position: position,
           map: map,
-          //icon: icon,
+          icon: image,
           data_id: object.id,
         });
+        //intializing distanceWidget
+        //distanceWidget = new DistanceWidget(map);
         //distanceBetweenCenterAndMarker = distanceBetweenTwoMarkers(position, distanceWidget.get('position'));
         marker.setVisible(true);
         markers.push(marker);
@@ -241,18 +338,24 @@ searchBox.addListener('places_changed', function() {
   // For each place, get the icon, name and location.
   var bounds = new google.maps.LatLngBounds();
   places.forEach(function(place) {
-    var icon = {
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25)
+    // var icon = {
+    //   url: place.icon,
+    //   size: new google.maps.Size(71, 71),
+    //   origin: new google.maps.Point(0, 0),
+    //   anchor: new google.maps.Point(17, 34),
+    //   scaledSize: new google.maps.Size(25, 25)
+    // };
+    image = {
+      url: "<%= asset_path 'dog-icon.png' %>"//,
+      //size: new google.maps.Size(20, 32),
+      //origin: new google.maps.Point(0, 0),
+      //anchor: new google.maps.Point(0, 32)
     };
 
     // Create a marker for each place.
     markers.push(new google.maps.Marker({
       map: map,
-      icon: icon,
+      icon: image,
       title: place.name,
       position: place.geometry.location
     }));

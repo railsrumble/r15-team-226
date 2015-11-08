@@ -8,7 +8,6 @@ $(document).ready(function(){
 var dog_breeds = ["Retrievers (Labrador)", "German Shepherds", "Retrievers (Golden)", "Bulldogs", "Beagles", "Yorkshire Terriers", "Poodles", "Boxers", "French Bulldogs", "Rottweilers", "Dachshunds", "Pointers (German Shorthaired)", "Siberian Huskies", "Doberman Pinschers", "Great Danes"];
 var cat_breeds = ["Abyssinian", "American Shorthair", "Birman", "Maine Coon", "Oriental", "Persian", "Ragdoll", "Siamese", "Sphynx", "Scottish Fold", "Cornish Rex", "Devon Rex", "Oriental", "Norwegian Forest Cat", "Burmese", "Siberian", "Tonkinese", "Russian Blue"] ;
   $('#pet_pet_type, #adoption_request_pet_attributes_pet_type, .pet_type').change(function(){
-    console.log('test');
     switch ($('#pet_pet_type, #adoption_request_pet_attributes_pet_type, .pet_type').val()) {
       case 'dog':
         breeds = dog_breeds;

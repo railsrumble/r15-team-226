@@ -5,9 +5,27 @@
   <% if current_owner %>
   <div class="panel-heading">
     <form role="form" action="/pets">
-        <%= check_box_tag "my_pets", true,('checked'  if  params["my_pets"].present?),id: "my_pets" %>
-        <label  for="my_pets" style="margin:0px 0px 0em;"> My Pets</label>
+      <div class="col-lg-9">
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (params[:pet_type])), class: 'pet_type search-dropdown' %>
+      </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :breed, options_for_select([['Select Breed', '']], :selected => (params[:pet_breed])), class: 'pet_breed search-dropdown' %>
+      </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :color, options_for_select([['Select', '']] + @pets.collect{|p| [p.color,p.color]}.uniq, :selected => (params[:color])), class: 'search-dropdown' %>
+      </div>
+      </div>
+
+      </div>
+      <div class="col-lg-3">
         <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
+        </div>
     </form>
   </div>
   <% end %>

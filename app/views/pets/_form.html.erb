@@ -2,7 +2,7 @@
   <div class='col-lg-2'></div>
   <div class='col-lg-6'>
 
-  <%= form_for(@pet, url: owner_pets_path) do |f| %>
+  <%= form_for(@pet, url: @url) do |f| %>
     <% if @pet.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
@@ -89,7 +89,7 @@
         Area
       </label>
       <div class='col-sm-9'>
-        <%= f.text_field :area, class: 'form-control', id: 'show_user_location' %>
+        <%= f.text_field :area, class: 'form-control', id: 'show_user_location' ,onclick: 'autoCompletePetLocation();' %>
       </div>
     </div>
 

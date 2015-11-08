@@ -1,3 +1,14 @@
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+var component;
+
 $(document).ready(function(){
   if($('#show_user_location').length)
     getUserLocation();
@@ -33,4 +44,19 @@ console.log('load..');
     console.log("=========ERROr-======================");
   }
 
+
+
+
+}
+
+//AutoComplete search location
+function autoCompletePetLocation(){
+
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('show_user_location')),
+      {types: ['geocode']});
+
+google.maps.event.addListener(autocomplete, 'place_changed', function() {
+var location_name = document.getElementById('show_user_location').value;
+});
 }

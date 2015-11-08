@@ -9,4 +9,8 @@ class AdoptionRequest < ActiveRecord::Base
   def created_by_current_owner?(current_owner)
     owner == current_owner
   end
+
+  def accepted?
+    status == "Accepted" ? true : false
+  end
 end

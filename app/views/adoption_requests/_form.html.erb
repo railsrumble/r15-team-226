@@ -1,3 +1,6 @@
+<div class='row'>
+  <div class='col-lg-2'></div>
+  <div class='col-lg-6'>
 <%= form_for(@adoption_request) do |f| %>
   <% if @adoption_request.errors.any? %>
     <div id="error_explanation">
@@ -15,29 +18,31 @@
   <%= f.fields_for :pet do |g| %>
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Type
       </label>
-      <div class='col-sm-9'>
-        <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+      <div class='col-sm-9 select-wrapper'>
+        <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (g.object.pet_type if g.object.present? )), {class: 'form-control', required: :true} %>
         <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
       </div>
     </div>
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Breed
       </label>
       <div class='col-sm-9'>
-        <%= g.text_field :breed, class: 'form-control' %>
+        <div class='select-wrapper'>
+          <%= g.select :breed, options_for_select(["Select Breed", ""]),class: 'form-control' %>
+        </div>
       </div>
     </div>
 
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Name
       </label>
       <div class='col-sm-9'>
@@ -49,18 +54,18 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Gender
       </label>
-      <div class='col-sm-9'>
-        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+      <div class='col-sm-9 select-wrapper'>
+        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']], :selected => (g.object.gender if g.object.present? )), {class: 'form-control', required: :true} %>
       </div>
     </div>
 
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Age
       </label>
       <div class='col-sm-9'>
@@ -74,7 +79,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Area
       </label>
       <div class='col-sm-9'>
@@ -85,7 +90,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Color
       </label>
       <div class='col-sm-9'>
@@ -96,7 +101,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Photos
       </label>
       <div class='col-sm-9'>
@@ -104,8 +109,15 @@
       </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit 'Send Request' %>
+  <div class="row form-group">
+    <div class='col-sm-1'></div>
+    <label class='col-sm-2 form-label' style="font-size:15px;">
+    </label>
+    <div class='col-sm-2'>
+    <%= f.submit 'Send Request', :class => 'button fit small' %>
   </div>
+</div>
 <% end %>
+</div>
+<div class='col-lg-2'></div>
+</div>

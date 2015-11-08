@@ -23,7 +23,7 @@
       </label>
       <div class='col-sm-9 select-wrapper'>
         <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (g.object.pet_type if g.object.present? )), {class: 'form-control', required: :true} %>
-        <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
+        <%= g.hidden_field :owner_id, value: current_owner.id %>
       </div>
     </div>
 

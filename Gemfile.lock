@@ -216,6 +216,3 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.3.0)
   unf
-
-BUNDLED WITH
-   1.10.6

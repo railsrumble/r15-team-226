@@ -26,7 +26,7 @@ module ApplicationHelper
       str += link_to 'Adopt', adoption_request_adoption_responses_path(adoption_request, '[adoption_response]owner_id' => current_owner.id, '[adoption_response]adoption_request_id' => adoption_request), remote: :true, method: :post
       #str += "<a href=\"<%= adoption_request_adoption_responses_path(adoption_request, '[adoption_response]owner_id' => current_owner.id, '[adoption_response]adoption_request_id' => adoption_request %>\", data-method= 'post', data-remote= 'true', id = \"<%= adoption_request_#{adoption_request.id} %>\">Adopt</a>"
     else
-      str += "<span class=\"label label-success\">Request sent</span>"
+      str += "<span class=\"label label-success\">Request sent</span>" unless adoption_request.accepted?
     end
     str.html_safe
   end

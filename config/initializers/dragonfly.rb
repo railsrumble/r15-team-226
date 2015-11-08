@@ -47,6 +47,7 @@ Dragonfly.app.configure do
 
 url_format '/media/:job/:sha/:name'
 allow_legacy_urls true
+secret "c614275582ae272d2716b42feac927f32fb9a0c6502a0ebc65fe501b16fe35d590a84e356b1b2c5a062bf7c0b778bd413ee99d0c282ec274b76f35e080c3ab91"
 
   datastore :s3forme,
     url_host: 'change.rest.s3for.me',

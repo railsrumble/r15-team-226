@@ -1,15 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Pets</h1>
-
+<b>Listing Pets</b>
+<a href="<%= new_owner_pet_path(current_owner) %>" class="btn btn-info pull-right">Add Your Pet</a>
+</br></br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <form role="form" action="/pets">
+        <%= check_box_tag "my_pets", true,('checked'  if  params["my_pets"].present?),id: "my_pets" %>
+        <label  for="my_pets" style="margin:0px 0px 0em;"> My Pets</label>
+        <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
+    </form>
+  </div>
+  <div class="panel-body">
 <table>
   <thead>
     <tr>
-      <th>Pet type</th>
+      <th>Name</th>
+      <th>Age</th>
       <th>Breed</th>
       <th>Gender</th>
-      <th>Age</th>
-      <th>Name</th>
+      <th>Pet type</th>
       <th>Area</th>
       <th>Color</th>
       <th>Location</th>
@@ -20,20 +28,22 @@
   <tbody>
     <% @pets.each do |pet| %>
       <tr>
-        <td><%= pet.pet_type %></td>
+        <td><a href="<%= pet_path(pet)%>"><%= pet.name %></a></td>
+        <td><%= pet.age %></td>
         <td><%= pet.breed %></td>
         <td><%= pet.gender %></td>
-        <td><%= pet.age %></td>
-        <td><%= pet.name %></td>
+        <td><%= pet.pet_type %></td>
         <td><%= pet.area %></td>
         <td><%= pet.color %></td>
         <td><%= pet.location %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_owner == pet.owner %>
+          <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+          <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
+</div>
 <br>

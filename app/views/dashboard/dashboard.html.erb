@@ -53,9 +53,66 @@
     <div class='panel panel-info' style="min-height: 350px;">
       <div class='panel-heading'>
         Walk requests
+        <a class="btn btn-info pull-right" href="<%= new_message_path(walk_request: :true) %>">Create walk request</a>
       </div>
       <div class=' panel-body'>
-        <div class="alert alert-warning" role="alert">This section is coming up soon.</div>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#current_owner_raised" role="tab" data-toggle="tab">Sent</a></li>
+          <li><a href="#current_owner_responded" role="tab" data-toggle="tab">Received</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="current_owner_raised">
+            <% if @current_owner_sent_walk_requests.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sent to</th>
+                    <th>On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @current_owner_sent_walk_requests.each do |walk_request| %>
+                    <tr>
+                      <td><a href="<%=  messages_path %>"><%= walk_request.receiver.name_or_email %></a></td>
+                      <td><%= walk_request.created_at.getlocal.strftime('%d-%m-%y  %I:%M %p') %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </br>
+            <% else %>
+          </br>
+            <div class="alert alert-warning" role="alert">We couldn't find any walk requests made by you.</div>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="current_owner_responded">
+            <% if @current_owner_received_walk_requests.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sent by</th>
+                    <th>On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @current_owner_received_walk_requests.each do |walk_request| %>
+                  <tr>
+                    <td><a href="<%=  messages_path %>"><%= walk_request.sender.name_or_email %></a></td>
+                    <td><%= walk_request.created_at.getlocal.strftime('%d-%m-%y  %I:%M %p') %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+          </br>
+              <div class="alert alert-warning" role="alert">We couldn't find any walk requests received by you.</div>
+            <% end %>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
   </div>

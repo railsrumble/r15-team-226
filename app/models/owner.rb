@@ -27,6 +27,7 @@ class Owner < ActiveRecord::Base
     (first_name && last_name)? (first_name + " " + last_name) : email
   end
   def conversations(user_id)
+    messages.update_all(:read => true)
     messages.select{|m| m.sender_id == user_id || m.receiver_id == user_id}
   end
 

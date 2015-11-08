@@ -14,7 +14,8 @@ a, u {
 .panel-heading.panel-color {
   padding: 0px 0px;
   background-image: linear-gradient(to bottom,#51baa4 0,#51baa4 100%);
-  
+}
+
 .message-panel, .message-list
 {
     height:60vh;

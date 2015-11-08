@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='col-lg-2'></div>
   <div class='col-lg-6'>
- <center><h2>Add a Pet</h2></center>
+
   <%= form_for(@pet, url: owner_pets_path) do |f| %>
     <% if @pet.errors.any? %>
       <div id="error_explanation">
@@ -16,7 +16,7 @@
     <% end %>
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Type
       </label>
       <div class='col-sm-9'>
@@ -31,7 +31,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Breed
       </label>
       <div class='col-sm-9'>
@@ -44,7 +44,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Name
       </label>
       <div class='col-sm-9'>
@@ -56,7 +56,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Gender
       </label>
       <div class='col-sm-9'>
@@ -71,7 +71,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Age
       </label>
       <div class='col-sm-9'>
@@ -85,7 +85,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Area
       </label>
       <div class='col-sm-9'>
@@ -96,7 +96,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Color
       </label>
       <div class='col-sm-9'>
@@ -107,7 +107,7 @@
 
     <div class="row form-group">
       <div class='col-sm-1'></div>
-      <label class='col-sm-2 form-label'>
+      <label class='col-sm-2 form-label' style="font-size:15px;">
         Photos
       </label>
       <div class='col-sm-9'>
@@ -117,8 +117,8 @@
 
 
 
-    <div class="form-group" style="margin-left:140px;">
-      <%= f.submit %>
+    <div class="form-group" style="margin-left:140px; width:0%">
+      <%= f.submit :class => 'button fit small' %>
     </div>
   <% end %>
 </div>

@@ -15,9 +15,11 @@
     <p><%= message.content %></p>
     <% message.attachments.present? %>
     <% message.attachments.each do |a| %>
-    <p><a href='<%= a.file.remote_url %>' target="_blank"><%= File.basename(a.file.remote_url) %> </a></p>
+    <a href='<%= a.file.remote_url %>' target="_blank"><%= File.basename(a.file.remote_url) %> </a>
+    &nbsp&nbsp&nbsp
     <% end %>
   </div>
 </div>
+</br>
 
 <% end %>

@@ -4,6 +4,7 @@
     <li><a href="<%= owner_dashboard_path %>">Dashboard</a></li>
     <li><a href="<%= pets_path %>">Pets</a></li>
     <li><a href="<%= discussions_path %>">Disucssions</a></li>
+    <li><a href="<%= find_path %>">Find Pets</a></li>
     <% if current_owner.present? %>
       <li><a href="<%= messages_path %>" id="message-count">Messages (<%= current_owner.messages_as_receiver.where(read: false).count%>)</a></li>
     <% end %>

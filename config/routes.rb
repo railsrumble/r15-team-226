@@ -30,6 +30,7 @@ Rails.application.routes.draw do
    get '/find' => 'dashboard#find'
    get '/get_current_user_location' => 'dashboard#get_current_user_location'
    get '/get_pets' => 'pets#get_pets'
+   get '/get_location_name' => 'pets#get_location_name'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

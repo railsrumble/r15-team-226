@@ -17,7 +17,7 @@
     <%= f.text_area :content, rows: 5 %>
   </div>
 </br>
-  
+
   <div class="6u 12u$(xsmall)">
     <div class="select-wrapper">
       <%= select_tag "message[receiver_id]", options_for_select(@owners.collect { |owner| [owner.email, owner.id]}, :selected => (f.object.receiver_id if f.object.present?)), {:class => "", :prompt => "Select receiver", :required => true } %>
@@ -29,6 +29,6 @@
 </div>
 </br>
   <div class="2u">
-    <%= f.submit :class => "button fit small"%>
+    <%= f.submit 'Send Message', :class => "button fit small"%>
   </div>
 <% end %>

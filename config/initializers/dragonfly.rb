@@ -61,9 +61,8 @@ allow_legacy_urls true
     #root_path: Rails.root.join('public/system/dragonfly', Rails.env),
     #server_root: Rails.root.join('public')
 end
-p Dragonfly.app.datastore
 # Logger
-p Dragonfly.logger = Rails.logger
+Dragonfly.logger = Rails.logger
 
 # Mount as middleware
 Rails.application.middleware.use Dragonfly::Middleware
@@ -83,9 +82,8 @@ end
 #S3
 #app.datastore = :s3
 
-p Dragonfly.app.datastore
 # Logger
-p Dragonfly.logger = Rails.logger
+Dragonfly.logger = Rails.logger
 
 #app.datastore.configure do |c|
 #  c.bucket_name = "foodshop-india"

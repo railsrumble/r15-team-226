@@ -21,7 +21,9 @@
       </label>
       <div class='col-sm-9'>
         <div class="select-wrapper">
-        <%= f.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+          <div class='select-wrapper'>
+            <%= f.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+          </div>
         <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
       </div>
       </div>
@@ -59,8 +61,10 @@
       </label>
       <div class='col-sm-9'>
         <div class="select-wrapper">
-        <%= f.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
-      </div>
+          <div class='select-wrapper'>
+            <%= f.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+          </div>
+        </div>
       </div>
     </div>
 

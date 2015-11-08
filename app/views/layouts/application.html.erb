@@ -16,7 +16,7 @@
 
   <!-- Nav -->
   <%= render 'layouts/nav_bar' %>
-  <section id="main" class="wrapper">
+  <section id="main" class="wrapper" style='height: 100vh;'>
     <div class="container">
       <div class='alert-area'>
         <% unless flash[:notice].blank? %>
@@ -54,6 +54,7 @@
       </ul>
     </div>
   </footer>
+
   <%= javascript_include_tag 'application'%>
   <script type="text/javascript">
     var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;

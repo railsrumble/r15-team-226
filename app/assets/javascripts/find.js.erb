@@ -268,18 +268,18 @@ deleteAllMarkers();
 
         if (object.area) {
 
-          image = {
-            url: "<%= asset_path 'dog-icon.png' %>"//,
-            //size: new google.maps.Size(100, 150),
-            //origin: new google.maps.Point(0, 0),
-            //anchor: new google.maps.Point(0, 32)
-          };
+          // image = {
+          //   url: "<%= asset_path 'dog-icon.png' %>"//,
+          //   //size: new google.maps.Size(100, 150),
+          //   //origin: new google.maps.Point(0, 0),
+          //   //anchor: new google.maps.Point(0, 32)
+          // };
 
           var position = new google.maps.LatLng(object.latitude, object.longitude);
           marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: image,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',//image,
             data_id: object.id,
           });
           //intializing distanceWidget
@@ -399,17 +399,17 @@ var pet_id = pet['id'];
       //   anchor: new google.maps.Point(17, 34),
       //   scaledSize: new google.maps.Size(25, 25)
       // };
-      image = {
-        url: "<%= asset_path 'dog-icon.png' %>"//,
-        //size: new google.maps.Size(20, 32),
-        //origin: new google.maps.Point(0, 0),
-        //anchor: new google.maps.Point(0, 32)
-      };
+      // image = {
+      //   url: "<%= asset_path 'dog-icon.png' %>"//,
+      //   //size: new google.maps.Size(20, 32),
+      //   //origin: new google.maps.Point(0, 0),
+      //   //anchor: new google.maps.Point(0, 32)
+      // };
 
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
         map: map,
-        icon: image,
+        //icon: image,
         title: place.name,
         position: place.geometry.location
       }));

@@ -7,7 +7,8 @@ class DashboardController < ApplicationController
 
   def dashboard
     @current_owner_pets = current_owner.pets
-
+    @current_owner_sent_walk_requests = Message.user_sent_walk_requests(current_owner)
+    @current_owner_received_walk_requests = Message.user_received_walk_requests(current_owner)
   end
 
 

@@ -12,6 +12,15 @@
       </div>
     </div>
 
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Status :</label>
+      </div>
+      <div class='col-md-6'>
+        <%= @adoption_request.status %>
+      </div>
+    </div>
+
 
     <div class='row'>
       <div class='col-md-2'>
@@ -41,6 +50,17 @@
     </div>
 
     <div class='row'>
+
+<% if @adoption_request.accepted? %>
+
+  <div class='col-md-2'>
+    <label>Adopted by :</label>
+  </div>
+  <div class='col-md-6'>
+    <%= @adoption_request.pet.owner.name_or_email %>
+  </div>
+
+<% else %>
       <div class='col-md-2'>
         <label>Responses :</label>
       </div>
@@ -68,6 +88,8 @@
           </tbody>
         </table>
       </div>
+<% end %>
+
     </div>
 
     <div class='row'>

@@ -1,0 +1,39 @@
+
+<%= form_for(@message) do |f| %>
+  <!-- <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> -->
+  <div class="6u 12u$(xsmall)">
+    <%= f.label :subject %>
+    <%= f.text_field :subject, value: 'Walk request',:readonly => true %>
+  </div>
+
+
+  <div class="6u 12u$(xsmall)">
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 5 %>
+  </div>
+</br>
+
+  <div class="6u 12u$(xsmall)">
+    <div class="select-wrapper">
+      <%= select_tag "message[receiver_id]", options_for_select(@owners.collect { |owner| [owner.email, owner.id]}, :selected => (f.object.receiver_id if f.object.present?)), {:class => "", :prompt => "Select receiver", :required => true } %>
+  </div>
+</div>
+</br>
+<div class="6u 12u$(xsmall)">
+  <%= f.file_field :attachments, :name => "message[attachments_attributes][][file]",:multiple => true %>
+</div>
+</br>
+  <div class="2u">
+    <%= f.submit 'Send Message', :class => "button fit small"%>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@ class Pet < ActiveRecord::Base
   after_validation :geocode
 
   def self.get_pets(pet_params)
-    
+
   end
 
 end

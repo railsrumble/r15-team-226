@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions
   # GET /discussions.json
   def index
-    @discussions = Discussion.all
+    @discussions = params[:my_discussions] ? current_owner.discussions : Discussion.all
   end
 
   # GET /discussions/1
@@ -60,10 +60,6 @@ class DiscussionsController < ApplicationController
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def my_discussions
-    @discussions = current_owner.discussions
   end
 
   private

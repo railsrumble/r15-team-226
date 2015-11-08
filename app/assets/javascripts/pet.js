@@ -5,21 +5,32 @@ $(document).ready(function(){
 
 function getUserLocation(){
 console.log('load..');
-  $.ajax({
-  type: 'get',
-  url: '/get_current_user_location/',
-  dataType: 'json',
-  success: function(data) {
-    if (data != false) {
-      lat = data["lattitude"];
-      lng = data["longitude"];
-      address = data["address"]
-      center = new google.maps.LatLng(lat, lng);
-      $("#show_user_location").val(address);
-      //displayMarkers();
-    } else {
-    }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+    error('not supported');
   }
-  });
+
+  function success(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    $.ajax({
+    type: 'get',
+    url: '/get_location_name',
+    data: {lat: lat, lng: lng},
+    dataType: 'json',
+    success: function(data) {
+      if (data != false) {
+        $("#show_user_location").val(data.result.replace(/\"/g, ""));
+      } else {
+      }
+    }
+    });
+  }
+
+  function error(position){
+    console.log("=========ERROr-======================");
+  }
 
 }

@@ -43,6 +43,7 @@
           </tbody>
         </table>
         <% else %>
+      </br>
         <div class="alert alert-warning" role="alert">We didn't find any pets in our system owned by you.</div>
         <% end %>
       </div>
@@ -97,7 +98,9 @@
                   <% end %>
                 </tbody>
               </table>
+            </br>
             <% else %>
+          </br>
             <div class="alert alert-warning" role="alert">We couldn't find any any adoption request created by you.</br>Probably you didn't create any. Create <a href="<%= new_adoption_request_path %>">here</a></div>
             <% end %>
           </div>
@@ -123,6 +126,7 @@
                 </tbody>
               </table>
             <% else %>
+          </br>
               <div class="alert alert-warning" role="alert">We couldn't find any adoption response made by you.</br>Probably you didn't made any. Respond to adoption requests <a href="<%= adoption_requests_path %>">here</a></div>
             <% end %>
           </div>

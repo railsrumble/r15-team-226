@@ -10,6 +10,8 @@ class Owner < ActiveRecord::Base
   has_many :messages_as_receiver, class_name: "Message", foreign_key: :receiver_id
   has_many :adoption_requests
 
+  has_many :adoption_responses
+
   def messages
     (messages_as_sender.order('created_at desc') + messages_as_receiver.order('created_at desc')).sort_by(&:created_at).reverse!
   end
@@ -17,4 +19,6 @@ class Owner < ActiveRecord::Base
   def name_or_email
     (first_name && last_name)? (first_name + " " + last_name) : email
   end
+
+
 end

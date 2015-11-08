@@ -1,23 +1,33 @@
 <div id="comment_list">
   <h1>Comments:</h1>
   <% @discussion.comments.each do |comment| %>
-  <div class="comment">
+  <div class="comment row">
+    <div class="col-md-1 portfolio-item">
+      <a href="#">
+        <img src="<%= comment.user.image.try(:remote_url) %>" class="img-circle" height="20" >
+      </a>
+      <h5>
+        <a href="#"><%= comment.user.first_name %></a>
+      </h5>
 
-    <p><%= comment.content %></p>
+    </div>
+    <div class="col-md-11">
+      <p><%= comment.content %></p>
+    </div>
   </div>
   <% end %>
 </div>
 
 <% if current_owner.present? %>
-  <h1>Add Comment</h2>
+<h1>Add Comment</h2>
   <%= form_for(@comment, :remote => true)  do |f| %>
-    <div class="12u 12u$(xsmall)">
-      <%= f.text_area :content %>
-    </div><br>
-    <%= f.hidden_field :commentable_id, :value => @discussion.id %>
-    <%= f.hidden_field :commentable_type, :value => 'Discussion'%>
-    <div class="actions">
-      <%= f.submit "Create"%>
-    </div>
+  <div class="12u 12u$(xsmall)">
+    <%= f.text_area :content %>
+  </div><br>
+  <%= f.hidden_field :commentable_id, :value => @discussion.id %>
+  <%= f.hidden_field :commentable_type, :value => 'Discussion'%>
+  <div class="actions">
+    <%= f.submit "Create"%>
+  </div>
   <% end %>
-<% end %>
+  <% end %>

@@ -9,6 +9,11 @@ var infowindow;
 var place;
 var distanceWidget; // A widget with the circle and two-markers: one at the center, and one functioning as re-sizer.
 var image;
+var pet_type; //= $('#pet_pet_type').val();
+var pet_breed; //= $('#pet_breed').val();;
+var pet ;
+
+
 if ($('#map').length) {
 
   // function getUserLocation(){
@@ -109,7 +114,10 @@ if ($('#map').length) {
       zoom: zoom_level,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    displayMarkers({lat: lat, lng: lng});
+    pet_type = $('#pet_pet_type').val();
+    pet_breed = $('#pet_breed').val();;
+    param = {lat: lat, lng: lng, pet_type: pet_type, pet_breed: pet_breed  }
+    displayMarkers(param);
 
     // $.ajax({
     // type: 'get',
@@ -147,7 +155,10 @@ if ($('#map').length) {
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
     //lat = map
-    marker.setMap(null);
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
 
     infowindow = new google.maps.InfoWindow();
     marker = new google.maps.Marker({
@@ -194,7 +205,10 @@ if ($('#map').length) {
       //infowindow.open(map, marker);
       lat = place.geometry.location.lat();
       lng = place.geometry.location.lng();
-      displayMarkers({address: address, lat: lat, lng: lng});
+      pet_type = $('#pet_pet_type').val();
+      pet_breed = $('#pet_breed').val();;
+      param = {address: address, lat: lat, lng: lng, pet_type: pet_type, pet_breed: pet_breed  }
+      displayMarkers(param);
     });
 
     // // Sets a listener on a radio button to change the filter type on Places
@@ -216,6 +230,7 @@ if ($('#map').length) {
   function displayMarkers(param){
 
   console.log("==============PARAM========{address: address, place_name: place.name}====" + param["address"]);
+  console.log(param);
   getPets(param)
   }
   function getPets(param){
@@ -223,12 +238,14 @@ if ($('#map').length) {
   $.ajax({
     type: 'get',
     url: '/get_pets',
-    data: {address: param["address"], latitude: param["lat"], longitude: param["lng"]},
+    data: {address: param["address"], latitude: param["lat"], longitude: param["lng"], pet_type: param["pet_type"], pet_breed: param["pet_breed"]  },
     dataType: 'json',
     success: function(result) {
       center = new google.maps.LatLng(result.lat, result.lng);
       var latlng  = [];
       var doggies = JSON.parse(result.pets);
+      console.log("===doggiee Count======");
+      console.log(doggies.length);
 
       $("#pac-input").val(result.location.replace(/\"/g, ""));
       $.each(doggies, function(index, object) {
@@ -271,10 +288,44 @@ if ($('#map').length) {
           marker.setVisible(true);
           markers.push(marker);
 
+var r;
+infoWindow = new google.maps.InfoWindow();
           google.maps.event.addListener(marker, 'click', function(event) {
-            //user_data =  HandlebarsTemplates['search/user'](object);
-            infoWindow.setContent(object);
-          });
+                //user_data =  HandlebarsTemplates['search/user'](object);
+                $.ajax({
+                type: 'get',
+                url: '/get_pet_details',
+                data: {id: object.id},
+                dataType: 'json',
+                success: function(data) {
+                  if (data != false) {
+                    console.log("===data.pet=======");
+                    console.log(data.pet);
+                    pet = JSON.parse(data.pet);
+var pet_name = pet['name'];
+var pet_gender = pet['gender'];
+var pet_image = data.image
+var pet_id = pet['id'];
+                    console.log("====" + pet['name']);
+                    console.log("<img alt='image' class='img-circle' src='" + pet_image + "'>Name: <strong> <a target='_blank' href=/pets/"+ pet_id +">" + pet_name +"</a>" +  "</br>" + " "+   pet_gender);
+                        if(pet_image != "") {
+                          infoWindow.setContent("<img alt='image' style='display: block;text-align: center;'class='img-circle' src='" + pet_image + "'>" + pet_name  +  "</br>" + " "+   pet_gender);
+                        }
+                        else {
+                          infoWindow.setContent("Name: <strong> <a target='_blank' href=/pets/"+ pet_id +">" + pet_name +"</a>" +  "</strong></br>" + "Gender: <strong>"+   pet_gender + "</strong>");
+                        }
+
+
+                  } else {
+                  }
+                }
+                });
+
+                showMarkerWindow(object.id);
+
+              });
+
+
           } // End of if(object.location)
       });// End of each loop
     } // End of success function
@@ -375,5 +426,38 @@ if ($('#map').length) {
   // [END region_getplaces]
   }
 
+function getMapWithMarkers(){
+var firstResult = $('#pac-input').val();
+  var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({"address":firstResult }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          lat = results[0].geometry.location.lat();
+          lng = results[0].geometry.location.lng();
+          var shouldPositionChangedRun = true;
+          //distance = distanceWidget.get("distance");
+           placeName = results[0].address_components[0].long_name,
+          latlng = new google.maps.LatLng(lat, lng);
+          //moveMarker(placeName, latlng);
+          //distanceWidget.set("position", map.getCenter());
+        }
+      });
+      pet_type = $('#pet_pet_type').val();
+      pet_breed = $('#pet_breed').val();;
+  param = {address: firstResult, lat: lat, lng: lng, pet_type: pet_type, pet_breed: pet_breed  }
+  displayMarkers(param)
+}
+
+//shows all markers window
+function showMarkerWindow(object_id){
+  $.each(markers, function( index, value ) {
+    //console.log( index + ": " + value.data_id );
+      if (value.data_id == object_id){
+        infoWindow.open(map, value);
+        return false
+      }
+
+  });
+}
 
 }

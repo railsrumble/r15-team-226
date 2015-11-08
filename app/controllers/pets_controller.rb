@@ -72,15 +72,17 @@ class PetsController < ApplicationController
   #@pets = Pet.near(params["address"])
   #@pets = Pet.get_pets(params)
   #[current_user.latitude, current_user.longitude], 50, :order => :distance
-  pets = Pet.near([params["latitude"],params["longitude"]])
+  #pets = Pet.near([params["latitude"],params["longitude"]])
+  pets = Pet.get_pets(params)
   p "======RESULT PETS++++++++++++++++++++"
   p pets
+  p "=======count======="
   pet_image_urls = pets.collect{|p| p.attachments.first.try(:file_uid).to_s}
   pets_hash = ActiveSupport::JSON.decode pets.to_json(include: [:attachments])
   pets_hash.each_with_index do |pets_item, index|
 			pets_item[:pet_image_url] = pet_image_urls[index]
   end
-  r = get_location_name_exactly("#{params["latitude"]}","#{params["longitude"]}")
+  r = get_location_name_exactly(params["latitude"],params["longitude"])
   respond_to do |format|
     #add latitude and longitude to result
 			format.json { render json: {pets: pets_hash.to_json, location: r, lat: params["latitude"], lng: params["longitude"] } } #, lat: lat, lng: lng
@@ -92,6 +94,18 @@ class PetsController < ApplicationController
     respond_to do |format|
       #add latitude and longitude to result
   			format.json { render json: {result: result.to_json} } #, lat: lat, lng: lng
+  		end
+  end
+
+  def get_pet_details
+    p "=========params================="
+    p params
+    result = Pet.find(params["id"])
+    pet_image_url = result.attachments.first.try(:file).try(:url).to_s
+    result = ActiveSupport::JSON.decode result.to_json(include: [:attachments])
+    respond_to do |format|
+      #add latitude and longitude to result
+  			format.json { render json: {pet: result.to_json, image: pet_image_url} } #, lat: lat, lng: lng
   		end
   end
 

@@ -59,8 +59,11 @@ gem 'devise'
 
 
 # For uploading files
-gem 'dragonfly', '~> 1.0.3'
+gem 'dragonfly', '~> 1.0.4'
 
 gem 'geocoder'
 
 gem 'arel'
+gem 'fog', '~> 1.19.0'
+gem 'unf'
+gem 'aws-sdk', "~> 1.38.0"

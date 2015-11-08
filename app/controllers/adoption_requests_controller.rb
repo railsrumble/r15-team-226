@@ -1,6 +1,6 @@
 class AdoptionRequestsController < ApplicationController
   before_action :set_adoption_request, only: [:show, :edit, :update, :destroy, :accept_adoption_request_response]
-
+  before_action :authenticate_owner!, only: [:new]
   # GET /adoption_requests
   # GET /adoption_requests.json
   def index

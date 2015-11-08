@@ -1,7 +1,8 @@
 <b>Listing Pets</b>
-<a href="<%= new_owner_pet_path(current_owner) %>" class="btn btn-info pull-right">Add Your Pet</a>
+<% if current_owner %><a href="<%= new_owner_pet_path(current_owner) %>" class="btn btn-info pull-right">Add Your Pet</a><% end %>
 </br></br>
 <div class="panel panel-default">
+  <% if current_owner %>
   <div class="panel-heading">
     <form role="form" action="/pets">
         <%= check_box_tag "my_pets", true,('checked'  if  params["my_pets"].present?),id: "my_pets" %>
@@ -9,6 +10,7 @@
         <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
     </form>
   </div>
+  <% end %>
   <div class="panel-body">
 <table>
   <thead>
@@ -21,7 +23,8 @@
       <th>Area</th>
       <th>Color</th>
       <th>Location</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -39,6 +42,9 @@
         <% if current_owner == pet.owner %>
           <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
           <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
         <% end %>
       </tr>
     <% end %>

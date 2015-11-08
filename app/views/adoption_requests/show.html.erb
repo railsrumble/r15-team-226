@@ -59,6 +59,8 @@
               <td><%= adoption_response.owner.name_or_email %></td>
               <% if @adoption_request.status == 'New' %>
                 <td><%= link_to "Accept", adoption_request_accept_adoption_response_path(@adoption_request, '[adoption_request]owner_id' => adoption_response.owner.id), class: 'btn btn-xs btn-success', method: :put %></td>
+              <% else %>
+                <td></td>
               <% end %>
             </tr>
             <% end %>

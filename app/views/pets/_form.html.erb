@@ -33,7 +33,9 @@
         Breed
       </label>
       <div class='col-sm-9'>
-        <%= f.text_field :breed, class: 'form-control' %>
+        <div class='select-wrapper'>
+          <%= f.select :breed, options_for_select(["Select Breed", ""]),class: 'form-control' %>
+        </div>
       </div>
     </div>
 

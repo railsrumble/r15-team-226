@@ -25,7 +25,7 @@
 
     <div class="row uniform 70%">
 			<div class="12u$">
-        <input name="name" placeholder="Enter your location" type="text">
+        <input name="name" placeholder="Enter your location" type="text" onclick="autoCompleteLocation()" id="pac-input">
 			</div>
 		</div>
   </div>
@@ -86,7 +86,7 @@
       </ul> -->
     </div>
   </footer>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzjmALmX7DzTfngCLT4G1iL6hl2099bFw&libraries=places&callback=initAutocomplete"
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzjmALmX7DzTfngCLT4G1iL6hl2099bFw&libraries=places"
        async defer></script>
   <%= javascript_include_tag 'application'%>
 </div>
@@ -98,5 +98,55 @@
   rumbleBannerPlacement = "bottom"; // Optionally replace with "bottom".
 </script>
 <script src="https://d4nnn7wspfa3h.cloudfront.net/banner-2015.js" type="text/javascript"></script>
+<script type="text/javascript">
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+var component;
+//AutoComplete search location
+function autoCompleteLocation(){
+
+
+  //var input = document.getElementById('pac-input');
+  //var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('pac-input')),
+      {types: ['geocode']});
+  //autocomplete.addListener('place_changed', fillInAddress);
+//   function fillInAddress() {
+//   // Get the place details from the autocomplete object.
+//   var place = autocomplete.getPlace();
+//
+//   for (component in componentForm) {
+//     document.getElementById(component).value = '';
+//     document.getElementById(component).disabled = false;
+//   }
+//
+//   // Get each component of the address from the place details
+//   // and fill the corresponding field on the form.
+//   for (var i = 0; i < place.address_components.length; i++) {
+//     var addressType = place.address_components[i].types[0];
+//     if (componentForm[addressType]) {
+//       var val = place.address_components[i][componentForm[addressType]];
+//       document.getElementById('pac-input').value = val;
+//     }
+//   }
+// }
+google.maps.event.addListener(autocomplete, 'place_changed', function() {
+console.log("===========================" + document.getElementById('pac-input').value);
+var location_name = document.getElementById('pac-input').value;
+window.location = "/find?location=" + location_name;
+});
+
+
+}
+
+</script>
 </body>
 </html>

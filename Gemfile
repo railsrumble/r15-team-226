@@ -10,10 +10,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -47,6 +43,7 @@ group :development, :test do
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'sqlite3'
 end
 
 group :development do

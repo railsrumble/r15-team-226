@@ -12,25 +12,25 @@
     </div>
   <% end %>
 
-  <div class="6u 12u$(xsmall)">
+  <div class="">
     <%= f.label :topic %>
     <%= f.text_field :topic %>
   </div><br>
-  <div class="6u 12u$(xsmall)">
+  <div class="">
     <%= f.label :content %>
     <%= f.text_area :content, rows: 5 %>
   </div><br>
-  <div class="6u 12u$(xsmall)">
+  <div class="">
     <%= f.label :type %>
     <div class="select-wrapper">
-    <%= f.select :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (f.object.discussion_type if f.object.present?)), {class: 'form-control', required: :true} %>
+    <%= f.select :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (f.object.discussion_type if f.object.present?)), {}, {class: 'pet_type', required: :true} %>
   </div>
   </div><br>
-  <div class="6u 12u$(xsmall)">
+  <div class="">
     <%= f.label :breed %>
-    <%= f.text_field :breed %>
+    <%= f.select :breed, options_for_select(["Select Breed", ""]), {},{class: ' pet_breed'} %>
   </div><br>
-  <div class="6u 12u$(xsmall)">
+  <div class="">
     <%= f.file_field :attachments, :name => "discussion[attachments_attributes][][file]",:multiple => true %>
   </div>
   </br>

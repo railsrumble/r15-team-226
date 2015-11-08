@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_owner!, only: [:new, :edit, :update, :destroy, :create]
+  #before_filter :get_current_user_location, :only => [:new]
 
   # GET /pets
   # GET /pets.json

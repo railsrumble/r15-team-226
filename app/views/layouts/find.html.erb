@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Paws</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <%= csrf_meta_tags %>
+</head>
+<body class="landing">
+
+  <!-- Header -->
+  <header id="header" class="skel-layers-fixed">
+    <h1><a href="/">Happy Paws</a></h1>
+    <a href="#nav">Menu</a>
+  </header>
+
+  <!-- Nav -->
+  <%= render 'layouts/nav_bar' %>
+  
+    <%= yield %>
+
+  <%= render 'shared/image_gallery_modal' %>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="icons">
+        <li><a href="#" class="icon fa-facebook">
+          <span class="label">Facebook</span>
+        </a></li>
+        <li><a href="#" class="icon fa-twitter">
+          <span class="label">Twitter</span>
+        </a></li>
+        <li><a href="#" class="icon fa-instagram">
+          <span class="label">Instagram</span>
+        </a></li>
+        <li><a href="#" class="icon fa-linkedin">
+          <span class="label">LinkedIn</span>
+        </a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; Untitled.</li>
+        <li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+        <li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+      </ul>
+    </div>
+  </footer>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzjmALmX7DzTfngCLT4G1iL6hl2099bFw&libraries=places&callback=initAutocomplete"
+       async defer></script>
+  <%= javascript_include_tag 'application'%>
+
+</body>
+
+
+
+
+</html>

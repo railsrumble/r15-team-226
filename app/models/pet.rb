@@ -5,11 +5,12 @@ class Pet < ActiveRecord::Base
   accepts_nested_attributes_for :attachments
 
   #auto-fetch address
-  reverse_geocoded_by :latitude, :longitude#, :address => :area
-  after_validation :reverse_geocode
+  geocoded_by  :area#, :latitude, :longitude #:address => :area
+  #after_validation :reverse_geocode
+  after_validation :geocode
 
   def self.get_pets(pet_params)
-    self.where(:breed => pet_params[:breed],:area => pet_params[:area], :pet_type => pet_params[:pet_type] )
+    
   end
 
 end

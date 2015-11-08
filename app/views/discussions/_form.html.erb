@@ -23,7 +23,7 @@
   <div class="6u 12u$(xsmall)">
     <%= f.label :type %>
     <div class="select-wrapper">
-    <%= f.select :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+    <%= f.select :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (f.object.discussion_type if f.object.present?)), {class: 'form-control', required: :true} %>
   </div>
   </div><br>
   <div class="6u 12u$(xsmall)">
@@ -34,6 +34,7 @@
     <%= f.file_field :attachments, :name => "discussion[attachments_attributes][][file]",:multiple => true %>
   </div>
   </br>
+  <%= f.hidden_field :owner_id, value: current_owner.id%>
   <div class="actions">
     <%= f.submit %>
   </div>

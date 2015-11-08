@@ -10,6 +10,7 @@ class Owner < ActiveRecord::Base
   has_many :messages_as_receiver, class_name: "Message", foreign_key: :receiver_id
   dragonfly_accessor :image
   has_many :adoption_requests
+  has_many :discussions, dependent: :destroy
 
   has_many :adoption_responses
 

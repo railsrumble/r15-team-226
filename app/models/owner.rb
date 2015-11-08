@@ -13,4 +13,10 @@ class Owner < ActiveRecord::Base
     self.messages_as_sender + self.messages_as_receiver
   end
   has_many :adoption_requests
+
+
+
+  def name_or_email
+    (first_name && last_name)? (first_name + " " + last_name) : email
+  end
 end

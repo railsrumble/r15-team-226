@@ -3,4 +3,5 @@ class Pet < ActiveRecord::Base
   has_many :attachments, :as => :attachable
   has_many :adoption_requests
   accepts_nested_attributes_for :attachments
+
 end

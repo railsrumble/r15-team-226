@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :adoption_responses
   resources :discussions do
     resources :comments
   end

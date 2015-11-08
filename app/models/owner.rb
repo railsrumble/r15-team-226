@@ -9,6 +9,7 @@ class Owner < ActiveRecord::Base
   has_many :messages_as_sender, class_name: "Message", foreign_key: :sender_id
   has_many :messages_as_receiver, class_name: "Message", foreign_key: :receiver_id
   has_many :adoption_requests
+  has_many :discussions, dependent: :destroy
 
   def messages
     (messages_as_sender.order('created_at desc') + messages_as_receiver.order('created_at desc')).sort_by(&:created_at).reverse!

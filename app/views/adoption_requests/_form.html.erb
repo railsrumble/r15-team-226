@@ -30,7 +30,9 @@
         Breed
       </label>
       <div class='col-sm-9'>
-        <%= g.text_field :breed, class: 'form-control' %>
+        <div class='select-wrapper'>
+          <%= g.select :breed, options_for_select(["Select Breed", ""]),class: 'form-control' %>
+        </div>
       </div>
     </div>
 
@@ -53,7 +55,9 @@
         Gender
       </label>
       <div class='col-sm-9'>
-        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+        <div class='select-wrapper'>
+          <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+        </div>
       </div>
     </div>
 

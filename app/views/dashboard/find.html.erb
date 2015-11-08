@@ -56,7 +56,8 @@ font-weight: 300;
     width: 345px;
   }
 </style>
-
+<input id="lat_value" data-id="<%= @lat %>" style="display: none;">
+<input id="lng_value" data-id="<%= @lng %>" style="display: none;">
 <input id="pac-input" class="controls" type="text" placeholder="Enter a Location" onclick="autoCompleteLocation()">
 <div id="map"></div>
 <script>

@@ -88,7 +88,7 @@ class PetsController < ApplicationController
   end
 
   def get_location_name
-    r = get_location_name_exactly("#{params[:lat]}","#{params[:lng]}")
+    result = get_location_name_exactly("#{params[:lat]}","#{params[:lng]}")
     respond_to do |format|
       #add latitude and longitude to result
   			format.json { render json: {result: result.to_json} } #, lat: lat, lng: lng

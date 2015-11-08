@@ -1,14 +1,14 @@
 <b>Listing Discussions</b>
 <a href="<%= new_discussion_path %>" class="btn btn-info pull-right">Post Discussion</a>
 </br></br>
-<!-- <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="<%= discussions_path %>">All</a></li>
-  <li role="presentation"><a href="<%= my_discussions_path%>">My discussions</a></li>
-</ul> -->
+
 <div class="panel panel-default">
   <div class="panel-heading">
-    <a href="<%= discussions_path %>" class="btn btn-default panel-title active" style="background-color: #2AABD2;">All</a>
-    <a href="<%= my_discussions_path %>" class="btn btn-default panel-title">My discussions </a>
+    <form role="form" action="/discussions">
+        <%= check_box_tag "my_discussions", true,('checked'  if  params["my_discussions"].present?),id: "my_discussions" %>
+        <label  for="my_discussions" style="margin:0px 0px 0em;"> My discussions</label>
+        <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
+    </form>
   </div>
   <div class="panel-body">
 <table>
@@ -18,21 +18,24 @@
       <!-- <th>Content</th> -->
       <th>Discussion type</th>
       <th>Breed</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @discussions.each do |discussion| %>
       <tr>
-        <td><%= discussion.topic.truncate(70) %></td>
+        <td><a href="<%= discussion_path(discussion) %>"><%= discussion.topic.truncate(70) %></a></td>
         <!-- <td><%#= discussion.content.truncate(70) %></td> -->
         <td><%= discussion.discussion_type %></td>
         <td><%= discussion.breed %></td>
-        <td><%= link_to 'Show', discussion %></td>
         <% if current_owner == discussion.owner%>
           <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
           <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+         <td></td>
+         <td></td>
         <% end %>
       </tr>
     <% end %>

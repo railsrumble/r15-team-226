@@ -6,7 +6,7 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    @pets = params[:my_pets] ? current_owner.pets : Pet.all
   end
 
   # GET /pets/1

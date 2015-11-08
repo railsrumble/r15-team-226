@@ -10,12 +10,101 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :owner_id, value: current_owner.id %>
+  <%= f.hidden_field :status, value: 'New' %>
+  <%= f.fields_for :pet do |g| %>
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Type
+      </label>
+      <div class='col-sm-9'>
+        <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+        <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Breed
+      </label>
+      <div class='col-sm-9'>
+        <%= g.text_field :breed, class: 'form-control' %>
+      </div>
+    </div>
 
 
-  <div class="field">
-    <%= f.label :pet_id %><br>
-    <%= f.select :pet_id, current_owner.pets.collect{|p| [p.name,p.id]} %>
-  </div>
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Name
+      </label>
+      <div class='col-sm-9'>
+        <%= g.text_field :name, class: 'form-control' %>
+      </div>
+
+    </div>
+
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Gender
+      </label>
+      <div class='col-sm-9'>
+        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+      </div>
+    </div>
+
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Age
+      </label>
+      <div class='col-sm-9'>
+        <%= g.text_field :age, class: 'form-control' %>
+      </div>
+
+    </div>
+
+
+
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Area
+      </label>
+      <div class='col-sm-9'>
+        <%= g.text_field :area, class: 'form-control' %>
+      </div>
+    </div>
+
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Color
+      </label>
+      <div class='col-sm-9'>
+        <%= g.text_field :color, class: 'form-control' %>
+      </div>
+    </div>
+
+
+    <div class="row form-group">
+      <div class='col-sm-1'></div>
+      <label class='col-sm-2 form-label'>
+        Photos
+      </label>
+      <div class='col-sm-9'>
+        <%= g.file_field :attachment,:name => "adoption_request[pet_attributes][attachments_attributes][][file]",:multiple => true %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit 'Send Request' %>
   </div>

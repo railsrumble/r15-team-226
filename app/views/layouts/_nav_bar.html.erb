@@ -5,7 +5,7 @@
     <li><a href="<%= pets_path %>">Pets</a></li>
     <li><a href="<%= discussions_path %>">Disucssions</a></li>
     <li><a href="<%= messages_path %>">Messages</a></li>
-    <li><a href="<%= adoption_requests_path %>">AddaptionRequests</a></li>
+    <li><a href="<%= adoption_requests_path %>">Adoption Requests</a></li>
     <% if current_owner.present? %>
       <li><%= link_to "Sign out", destroy_owner_session_path, { method: :delete } %></li>
     <% else %>

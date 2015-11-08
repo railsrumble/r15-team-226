@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20151108054242) do
   add_index "adoption_requests", ["owner_id"], name: "index_adoption_requests_on_owner_id"
   add_index "adoption_requests", ["pet_id"], name: "index_adoption_requests_on_pet_id"
 
+  create_table "adoption_responses", force: :cascade do |t|
+    t.integer  "adoption_request_id"
+    t.integer  "owner_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
     t.string   "attachable_type"

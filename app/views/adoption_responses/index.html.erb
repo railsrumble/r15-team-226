@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Adoption Responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adoption request</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adoption_responses.each do |adoption_response| %>
+      <tr>
+        <td><%= adoption_response.adoption_request_id %></td>
+        <td><%= adoption_response.owner_id %></td>
+        <td><%= link_to 'Show', adoption_response %></td>
+        <td><%= link_to 'Edit', edit_adoption_response_path(adoption_response) %></td>
+        <td><%= link_to 'Destroy', adoption_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adoption response', new_adoption_response_path %>

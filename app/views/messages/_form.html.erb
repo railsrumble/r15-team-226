@@ -25,7 +25,7 @@
   <%= f.hidden_field :sender_id, value: current_owner.id %>
   <div class="6u 12u$(xsmall)">
     <div class="select-wrapper">
-      <%= select_tag "message[receiver_id]", options_for_select(@owners.collect { |owner| [owner.email, owner.id]}), {:class => "", :prompt => "Select receiver", :required => true } %>
+      <%= select_tag "message[receiver_id]", options_for_select(@owners.collect { |owner| [owner.email, owner.id]}, :selected => (f.object.receiver_id if f.object.present?)), {:class => "", :prompt => "Select receiver", :required => true } %>
   </div>
 </div>
 </br>

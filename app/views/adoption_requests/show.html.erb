@@ -1,16 +1,79 @@
+<div class='panel panel-info' style="min-height: 350px;">
+  <div class='panel-heading'>
+    Adoption request details
+  </div>
+  <div class='panel-body'>
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Owner :</label>
+      </div>
+      <div class='col-md-6'>
+        <%= @adoption_request.owner.name_or_email %>
+      </div>
+    </div>
 
 
-<p>
-  <strong>Owner:</strong>
-  <%= @adoption_request.owner %>
-</p>
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Pet type :</label>
+      </div>
+      <div class='col-md-6'>
+        <%= @adoption_request.pet.pet_type %>
+      </div>
+    </div>
 
-<p>
-  <strong>Pet:</strong>
-  <%= @adoption_request.pet %>
-</p>
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Breed :</label>
+      </div>
+      <div class='col-md-6'>
+        <%= @adoption_request.pet.breed %>
+      </div>
+    </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @adoption_request.status %>
-</p>
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Pet name :</label>
+      </div>
+      <div class='col-md-6'>
+        <%= @adoption_request.pet.name %>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-md-2'>
+        <label>Responses :</label>
+      </div>
+      <div class='col-md-6'>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Owner name/email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @adoption_request.adoption_responses.each do |adoption_response| %>
+            <tr>
+              <td><%= adoption_response.owner.name_or_email %></td>
+              <% if @adoption_request.status == 'New' %>
+                <td><%= link_to "Accept", adoption_request_accept_adoption_response_path(@adoption_request, '[adoption_request]owner_id' => adoption_response.owner.id), class: 'btn btn-xs btn-success', method: :put %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= render :partial => 'comments/commentable_form', locals: {commentable: @adoption_request }%>
+      </div>
+    </div>
+  </div>
+</div>

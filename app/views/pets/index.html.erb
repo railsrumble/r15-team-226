@@ -40,7 +40,7 @@
         <td><%= pet.color %></td>
         <td><%= pet.location %></td>
         <% if current_owner == pet.owner %>
-          <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+          <td><%= link_to 'Edit', edit_owner_pet_path(current_owner, pet) %></td>
           <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
           <td></td>

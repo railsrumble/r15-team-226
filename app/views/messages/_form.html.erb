@@ -1,6 +1,4 @@
-<section class="">
-  <div class="container">
-    <h1>New Message</h1>
+
 <%= form_for(@message) do |f| %>
   <!-- <% if @message.errors.any? %>
     <div id="error_explanation">
@@ -32,12 +30,10 @@
 </div>
 </br>
 <div class="6u 12u$(xsmall)">
-  <%= f.file_field :attachments,:name => "message[attachments_attributes][][attachment]",:multiple => true %>
+  <%= f.file_field :attachments, :name => "message[attachments_attributes][][file]",:multiple => true %>
 </div>
 </br>
   <div class="2u">
     <%= f.submit :class => "button fit small"%>
   </div>
 <% end %>
-</div>
-</section>

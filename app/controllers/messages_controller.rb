@@ -23,6 +23,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
+    @owners = Owner.where.not(id: current_owner.id)
   end
 
   # POST /messages
@@ -73,6 +74,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:subject, :content, :sender_id, :receiver_id, :read, attachments_attributes: [:attachment])
+      params.require(:message).permit(:subject, :content, :sender_id, :receiver_id, :read, attachments_attributes: [:file])
     end
 end

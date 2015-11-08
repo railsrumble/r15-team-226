@@ -1,5 +1,4 @@
-<div class="container">
-<h1>New Discussion</h1>
+
 <%= form_for(@discussion) do |f| %>
   <% if @discussion.errors.any? %>
     <div id="error_explanation">
@@ -30,11 +29,10 @@
     <%= f.text_field :breed %>
   </div><br>
   <div class="6u 12u$(xsmall)">
-    <%= f.file_field :attachments,:name => "discussion[attachments_attributes][][attachment]",:multiple => true %>
+    <%= f.file_field :attachments, :name => "discussion[attachments_attributes][][file]",:multiple => true %>
   </div>
   </br>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-</div>

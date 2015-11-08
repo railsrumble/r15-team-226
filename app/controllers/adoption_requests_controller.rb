@@ -1,5 +1,5 @@
 class AdoptionRequestsController < ApplicationController
-  before_action :set_adoption_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_adoption_request, only: [:show, :edit, :update, :destroy, :accept_adoption_request_response]
 
   # GET /adoption_requests
   # GET /adoption_requests.json
@@ -10,6 +10,7 @@ class AdoptionRequestsController < ApplicationController
   # GET /adoption_requests/1
   # GET /adoption_requests/1.json
   def show
+    #@comment = @adoption_request.comments.new
   end
 
   # GET /adoption_requests/new
@@ -62,10 +63,20 @@ class AdoptionRequestsController < ApplicationController
     end
   end
 
+
+  def accept_adoption_request_response
+    @adoption_request.update(status: 'Accepted')
+    @adoption_request.pet.update(owner: Owner.find(adoption_request_params[:owner_id]))
+    respond_to do |format|
+      format.html { redirect_to adoption_requests_path, notice: 'Response was successfully accepted.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_adoption_request
-      @adoption_request = AdoptionRequest.find(params[:id])
+      @adoption_request = AdoptionRequest.find(params[:id] || params[:adoption_request_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

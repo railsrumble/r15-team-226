@@ -274,12 +274,13 @@ deleteAllMarkers();
           //   //origin: new google.maps.Point(0, 0),
           //   //anchor: new google.maps.Point(0, 32)
           // };
+          icon = get_icon(object);
 
           var position = new google.maps.LatLng(object.latitude, object.longitude);
           marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',//image,
+            icon: icon,//'http://maps.google.com/mapfiles/ms/icons/green-dot.png',//image,
             data_id: object.id,
           });
           //intializing distanceWidget
@@ -458,6 +459,23 @@ function showMarkerWindow(object_id){
       }
 
   });
+}
+
+function get_icon(item) {
+  var icon;
+
+    switch (item.pet_type) {
+      case "cat":
+        icon = "<%= asset_path 'cat.png' %>";
+        break;
+      case "dog":
+        icon = "<%= asset_path 'dog.png' %>";
+        break;
+      default:
+        // Nothing to do
+    }
+
+  return icon;
 }
 
 }

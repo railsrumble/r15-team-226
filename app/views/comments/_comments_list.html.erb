@@ -1,5 +1,6 @@
 <div id="comment_list">
   <h1>Comments:</h1>
+  <% if @discussion.comments.present?%>
   <% @discussion.comments.each do |comment| %>
   <div class="comment row">
     <div class="col-md-1 portfolio-item">
@@ -15,6 +16,9 @@
       <p><%= comment.content %></p>
     </div>
   </div>
+  <% end %>
+  <% else %>
+    <div class="alert alert-warning">No comments yet.</div>
   <% end %>
 </div>
 

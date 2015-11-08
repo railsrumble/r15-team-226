@@ -1,12 +1,13 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_owner!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :authenticate_owner!, only: [:user_messages, :new, :edit, :update, :destroy, :create]
 
   # GET /messages
   # GET /messages.json
   def index
     #@messages = Message.all
-    @messages = current_owner.messages
+    #@messages = current_owner.messages
+    @users = current_owner.conversation_users
   end
 
   # GET /messages/1
@@ -33,8 +34,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
-
+    @message = current_owner.messages_as_sender.new(message_params)
     respond_to do |format|
       if @message.save
         format.html { redirect_to messages_path, notice: 'Message was successfully created.' }
@@ -67,6 +67,15 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  def user_messages
+    if params[:user_id].present?
+      @messages = current_owner.conversations(params[:user_id].to_i)
+      @user = Owner.find(params[:user_id].to_i)
+      render :user_messages, :layout => false
+    else
+      render ""
     end
   end
 

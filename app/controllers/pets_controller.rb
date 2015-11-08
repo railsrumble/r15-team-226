@@ -68,17 +68,31 @@ class PetsController < ApplicationController
   def get_pets
   p "=================params=================="
   p params
-  @pets = {}
+  pets = {}
   #@pets = Pet.near(params["address"])
   #@pets = Pet.get_pets(params)
   #[current_user.latitude, current_user.longitude], 50, :order => :distance
-  @pets = Pet.near([params["latitude"],params["longitude"]],50)
+  pets = Pet.near([params["latitude"],params["longitude"]])
   p "======RESULT PETS++++++++++++++++++++"
-  p @pets
+  p pets
+  pet_image_urls = pets.collect{|p| p.attachments.first.try(:file_uid).to_s}
+  pets_hash = ActiveSupport::JSON.decode pets.to_json(include: [:attachments])
+  pets_hash.each_with_index do |pets_item, index|
+			pets_item[:pet_image_url] = pet_image_urls[index]
+  end
+  r = get_location_name_exactly("#{params["latitude"]}","#{params["longitude"]}")
   respond_to do |format|
     #add latitude and longitude to result
-			format.json { render json: {pets: @pets.to_json} } #, lat: lat, lng: lng
+			format.json { render json: {pets: pets_hash.to_json, location: r, lat: params["latitude"], lng: params["longitude"] } } #, lat: lat, lng: lng
 		end
+  end
+
+  def get_location_name
+    r = get_location_name_exactly("#{params[:lat]}","#{params[:lng]}")
+    respond_to do |format|
+      #add latitude and longitude to result
+  			format.json { render json: {result: result.to_json} } #, lat: lat, lng: lng
+  		end
   end
 
   private
@@ -90,5 +104,10 @@ class PetsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
       params.require(:pet).permit(:pet_type, :breed, :gender, :age, :name, :area, :color, :location, :owner_id, attachments_attributes: [:file])
+    end
+
+    def get_location_name_exactly(lat,lng)
+      result = Geocoder.search([lat,lng])
+      result[0].data["formatted_address"]
     end
 end

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :adoption_responses
   end
   devise_for :owners
-  resources :messages
+  resources :messages do
+    get :user_messages, :on => :collection
+  end
 
   resources :attachments
   resources :comments
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
    get '/find' => 'dashboard#find'
    get '/get_current_user_location' => 'dashboard#get_current_user_location'
    get '/get_pets' => 'pets#get_pets'
+   get '/get_location_name' => 'pets#get_location_name'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

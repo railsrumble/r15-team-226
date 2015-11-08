@@ -43,6 +43,7 @@ group :development, :test do
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-rails'
   gem 'sqlite3'
 end
 
@@ -61,3 +62,5 @@ gem 'devise'
 gem 'dragonfly', '~> 1.0.3'
 
 gem 'geocoder'
+
+gem 'arel'

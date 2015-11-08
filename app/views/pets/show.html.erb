@@ -7,7 +7,7 @@
                 <a href="<%= @pet.attachments.first.file.url  if @pet.attachments.present? %>" title="<%= @pet.name %>" data-gallery>
                   <%= image_tag @pet.attachments.first.file.url, size: '420x420'   if @pet.attachments.present? %>
                 </a>
-
+								<a href="/messages/new?receiver_id=<%= @pet.owner.id %>">Contact owner</a>
             </div>
 						<!-- <span class="image"><img src="images/pic01.jpg" alt="" /></span> -->
 						<div class="content">

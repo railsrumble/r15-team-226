@@ -6,7 +6,7 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = params[:my_pets] ? current_owner.pets : Pet.all
+    @pets =  Pet.get_pets(params)
   end
 
   # GET /pets/1
@@ -17,10 +17,12 @@ class PetsController < ApplicationController
   # GET /pets/new
   def new
     @pet = Pet.new
+    @url = owner_pets_path(current_owner)
   end
 
   # GET /pets/1/edit
   def edit
+    @url = owner_pet_path(current_owner, @pet)
   end
 
   # POST /pets
@@ -73,7 +75,7 @@ class PetsController < ApplicationController
   #@pets = Pet.get_pets(params)
   #[current_user.latitude, current_user.longitude], 50, :order => :distance
   #pets = Pet.near([params["latitude"],params["longitude"]])
-  pets = Pet.get_pets(params)
+  pets = Pet.get_pets_to_show(params)
   p "======RESULT PETS++++++++++++++++++++"
   p pets
   p "=======count======="

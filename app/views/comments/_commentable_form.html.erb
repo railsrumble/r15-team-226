@@ -1,7 +1,7 @@
 <div id="comment_list">
   <h1>Comments:</h1>
-  <% if @discussion.comments.present?%>
-  <% @discussion.comments.each do |comment| %>
+<% if commentable.comments.present? %>
+  <% commentable.comments.each do |comment| %>
   <div class="comment row">
     <div class="col-md-1 portfolio-item">
       <a href="#">
@@ -17,19 +17,19 @@
     </div>
   </div>
   <% end %>
-  <% else %>
-    <div class="alert alert-warning">No comments yet.</div>
-  <% end %>
+<% else %>
+<div class="alert alert-warning" role="alert">No comments added yet.</div>
+<% end %>
 </div>
 
 <% if current_owner.present? %>
 <h1>Add Comment</h2>
-  <%= form_for(@comment, :remote => true)  do |f| %>
+  <%= form_for(@adoption_request.comments.new, :remote => true)  do |f| %>
   <div class="12u 12u$(xsmall)">
     <%= f.text_area :content %>
   </div><br>
-  <%= f.hidden_field :commentable_id, :value => @discussion.id %>
-  <%= f.hidden_field :commentable_type, :value => 'Discussion'%>
+  <%= f.hidden_field :commentable_id, :value => commentable.id %>
+  <%= f.hidden_field :commentable_type, :value => commentable.class.name %>
   <div class="actions">
     <%= f.submit "Create"%>
   </div>

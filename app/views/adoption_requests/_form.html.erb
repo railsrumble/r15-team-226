@@ -22,8 +22,8 @@
         Type
       </label>
       <div class='col-sm-9 select-wrapper'>
-        <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
-        <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
+        <%= g.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (g.object.pet_type if g.object.present? )), {class: 'form-control', required: :true} %>
+        <%= g.hidden_field :owner_id, value: current_owner.id %>
       </div>
     </div>
 
@@ -33,7 +33,9 @@
         Breed
       </label>
       <div class='col-sm-9'>
-        <%= g.text_field :breed, class: 'form-control' %>
+        <div class='select-wrapper'>
+          <%= g.select :breed, options_for_select(["Select Breed", ""]),class: 'form-control' %>
+        </div>
       </div>
     </div>
 
@@ -56,7 +58,7 @@
         Gender
       </label>
       <div class='col-sm-9 select-wrapper'>
-        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+        <%= g.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']], :selected => (g.object.gender if g.object.present? )), {class: 'form-control', required: :true} %>
       </div>
     </div>
 

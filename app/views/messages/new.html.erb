@@ -4,7 +4,11 @@
     <h1>New Message</h1>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= render 'form' %>
+        <% if params.has_key? 'walk_request' %>
+          <%= render 'walk_request_form' %>
+        <% else %>
+          <%= render 'form' %>
+        <% end %>
       </div>
     </div>
   </div>

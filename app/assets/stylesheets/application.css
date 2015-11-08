@@ -16,6 +16,7 @@
  *= require ./bootstrap-image-gallery/bootstrap-image-gallery.min
  * require_tree .
  *= require_self
+ *= require ./retrospect/font-awesome.min
  *= require ./retrospect/main.css
  *= require custom
  */

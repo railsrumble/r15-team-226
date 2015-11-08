@@ -3,44 +3,58 @@
 </br></br>
 
 <div class="panel panel-default">
+  <% if current_owner %>
   <div class="panel-heading">
     <form role="form" action="/discussions">
-        <%= check_box_tag "my_discussions", true,('checked'  if  params["my_discussions"].present?),id: "my_discussions" %>
-        <label  for="my_discussions" style="margin:0px 0px 0em;"> My discussions</label>
+      <div class="col-lg-9">
+        <div class="col-lg-3">
+          <div class="select-wrapper search-dropdown-wrapper">
+            <%= select_tag :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (params[:discussion_type])), class: 'pet_type search-dropdown' %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="select-wrapper search-dropdown-wrapper">
+            <%= select_tag :breed, options_for_select([['Select Breed', '']], :selected => (params[:pet_breed])), class: 'pet_breed search-dropdown' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
         <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
+      </div>
     </form>
   </div>
+  <% end %>
   <div class="panel-body">
-<table>
-  <thead>
-    <tr>
-      <th>Topic</th>
-      <!-- <th>Content</th> -->
-      <th>Discussion type</th>
-      <th>Breed</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <!-- <th>Content</th> -->
+          <th>Discussion type</th>
+          <th>Breed</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @discussions.each do |discussion| %>
-      <tr>
-        <td><a href="<%= discussion_path(discussion) %>"><%= discussion.topic.truncate(70) %></a></td>
-        <!-- <td><%#= discussion.content.truncate(70) %></td> -->
-        <td><%= discussion.discussion_type %></td>
-        <td><%= discussion.breed %></td>
-        <% if current_owner == discussion.owner%>
+      <tbody>
+        <% @discussions.each do |discussion| %>
+        <tr>
+          <td><a href="<%= discussion_path(discussion) %>"><%= discussion.topic.truncate(70) %></a></td>
+          <!-- <td><%#= discussion.content.truncate(70) %></td> -->
+          <td><%= discussion.discussion_type %></td>
+          <td><%= discussion.breed %></td>
+          <% if current_owner == discussion.owner%>
           <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
           <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-         <td></td>
-         <td></td>
+          <% else %>
+          <td></td>
+          <td></td>
+          <% end %>
+        </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 <br>

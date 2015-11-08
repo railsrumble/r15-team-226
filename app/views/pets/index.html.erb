@@ -1,14 +1,34 @@
 <b>Listing Pets</b>
-<a href="<%= new_owner_pet_path(current_owner) %>" class="btn btn-info pull-right">Add Your Pet</a>
+<% if current_owner %><a href="<%= new_owner_pet_path(current_owner) %>" class="btn btn-info pull-right">Add Your Pet</a><% end %>
 </br></br>
 <div class="panel panel-default">
+  <% if current_owner %>
   <div class="panel-heading">
     <form role="form" action="/pets">
-        <%= check_box_tag "my_pets", true,('checked'  if  params["my_pets"].present?),id: "my_pets" %>
-        <label  for="my_pets" style="margin:0px 0px 0em;"> My Pets</label>
+      <div class="col-lg-9">
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']], :selected => (params[:pet_type])), class: 'pet_type search-dropdown' %>
+      </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :breed, options_for_select([['Select Breed', '']], :selected => (params[:pet_breed])), class: 'pet_breed search-dropdown' %>
+      </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="select-wrapper search-dropdown-wrapper">
+        <%= select_tag :color, options_for_select([['Select', '']] + @pets.collect{|p| [p.color,p.color]}.uniq, :selected => (params[:color])), class: 'search-dropdown' %>
+      </div>
+      </div>
+
+      </div>
+      <div class="col-lg-3">
         <%= submit_tag "Filter" , :name => nil, :class => "pull-right button alt small" %>
+        </div>
     </form>
   </div>
+  <% end %>
   <div class="panel-body">
 <table>
   <thead>
@@ -21,7 +41,8 @@
       <th>Area</th>
       <th>Color</th>
       <th>Location</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -37,8 +58,11 @@
         <td><%= pet.color %></td>
         <td><%= pet.location %></td>
         <% if current_owner == pet.owner %>
-          <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+          <td><%= link_to 'Edit', edit_owner_pet_path(current_owner, pet) %></td>
           <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
         <% end %>
       </tr>
     <% end %>

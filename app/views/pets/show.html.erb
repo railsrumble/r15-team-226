@@ -1,49 +1,54 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Pet type:</strong>
-  <%= @pet.pet_type %>
-</p>
 
-<p>
-  <strong>Breed:</strong>
-  <%= @pet.breed %>
-</p>
+<section id="one" class="wrapper style1">
+				<div class="inner">
+					<article class="feature left">
+            <div id="links">
+                <a href="<%= @pet.attachments.first.file.url %>" title="<%= @pet.name %>" data-gallery>
+                  <%= image_tag @pet.attachments.first.file.url, size: '420x420' %>
+                </a>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @pet.gender %>
-</p>
+            </div>
+						<!-- <span class="image"><img src="images/pic01.jpg" alt="" /></span> -->
+						<div class="content">
+              <p>
+                <strong>Pet type:</strong>
+                <%= @pet.pet_type %>
+                  <span class="pull-right"><strong>Color:</strong>
+                <%= @pet.color %></span>
+              </p>
+              <p>
+                <strong>Name:</strong>
+                <%= @pet.name %>
 
-<p>
-  <strong>Age:</strong>
-  <%= @pet.age %>
-</p>
+                <span class="pull-right"><strong>Breed:</strong>
+                <%= @pet.breed %></span>
+              </p>
+              <p>
+                <strong>Gender:</strong>
+                <%= @pet.gender %>
+                <span class="pull-right"><strong>Age:</strong>
+                <%= @pet.age %></span>
+              </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
-
-<p>
-  <strong>Area:</strong>
-  <%= @pet.area %>
-</p>
-
-<p>
-  <strong>Color:</strong>
-  <%= @pet.color %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @pet.location %>
-</p>
-<div id="links">
-  <% @pet.attachments.each do |attachment| %>
-    <a href="<%= attachment.file.url %>" title="<%= @pet.name %>" data-gallery>
-      <%= image_tag attachment.file.url, size: '120x120' %>
-    </a>
-  <% end %>
-</div>
-<%= render 'shared/image_gallery_modal' %>
+							<p>
+                <strong>Area:</strong>
+                <%= @pet.area %>
+              </p>
+							<!-- <ul class="actions">
+								<li>
+									<a href="#" class="button alt">More</a>
+								</li>
+							</ul> -->
+						</div>
+					</article>
+				</div>
+			</section>
+      <div id="links">
+        <% @pet.attachments.each do |attachment| %>
+          <a href="<%= attachment.file.url %>" title="<%= @pet.name %>" data-gallery>
+            <%= image_tag attachment.file.url, size: '120x120' %>
+          </a>
+        <% end %>
+      </div>
+      <%= render 'shared/image_gallery_modal' %>

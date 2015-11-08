@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :adoption_requests do
+    put 'accept_adoption_request_response' => 'adoption_requests#accept_adoption_request_response', as: 'accept_adoption_response'
     resources :adoption_responses
   end
   devise_for :owners

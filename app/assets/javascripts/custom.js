@@ -7,8 +7,8 @@ $(document).ready(function(){
   }, 2000);
 var dog_breeds = ["Retrievers (Labrador)", "German Shepherds", "Retrievers (Golden)", "Bulldogs", "Beagles", "Yorkshire Terriers", "Poodles", "Boxers", "French Bulldogs", "Rottweilers", "Dachshunds", "Pointers (German Shorthaired)", "Siberian Huskies", "Doberman Pinschers", "Great Danes"];
 var cat_breeds = ["Abyssinian", "American Shorthair", "Birman", "Maine Coon", "Oriental", "Persian", "Ragdoll", "Siamese", "Sphynx", "Scottish Fold", "Cornish Rex", "Devon Rex", "Oriental", "Norwegian Forest Cat", "Burmese", "Siberian", "Tonkinese", "Russian Blue"] ;
-  $('#pet_pet_type').change(function(){
-    switch ($('#pet_pet_type').val()) {
+  $('#pet_pet_type, #adoption_request_pet_attributes_pet_type, .pet_type').change(function(){
+    switch ($('#pet_pet_type, #adoption_request_pet_attributes_pet_type, .pet_type').val()) {
       case 'dog':
         breeds = dog_breeds;
         remove_existing_options();
@@ -35,7 +35,7 @@ var cat_breeds = ["Abyssinian", "American Shorthair", "Birman", "Maine Coon", "O
 function add_options_to_breed_field(breeds){
   remove_existing_options();
   $.each(breeds, function(key, value) {
-    $('#pet_breed')
+    $('#pet_breed, #adoption_request_pet_attributes_breed, .pet_breed')
     .append($("<option>" + value +"</option>")
     .attr("value",value ));
   });
@@ -43,7 +43,7 @@ function add_options_to_breed_field(breeds){
 }
 
 function remove_existing_options(){
-  $('#pet_breed')
+  $('#pet_breed, #adoption_request_pet_attributes_breed, .pet_breed')
   .find('option')
   .remove()
   .end()

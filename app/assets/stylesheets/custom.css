@@ -21,3 +21,9 @@ a, u {
     height:60vh;
     overflow-y: scroll;
 }
+.search-dropdown-wrapper{
+  line-height: 2.5em;
+}
+.search-dropdown{
+  height: 2.5em;
+}

@@ -70,6 +70,9 @@ if ($('.first-message-enable').length) {
   }
 
   $(document).ready(function() {
+    //scroll to bot
+
+
     $(".message_item").click(function(){
       $('#message_receiver_id').val($(this).data('user-id'));
       params = {user_id: $(this).data('user-id')};
@@ -80,6 +83,7 @@ if ($('.first-message-enable').length) {
   			dataType : "html",
   			success : function(data) {
   				$('.message-panel').html(data);
+          $('.message-panel').scrollTop($('.message-panel')[0].scrollHeight);
   			}
   		});
     });

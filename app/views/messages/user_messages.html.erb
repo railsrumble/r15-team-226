@@ -5,19 +5,21 @@
     <a href="#">
       <img src="<%=  sender.image.try(:remote_url) %>" class="img-circle" height="20" >
     </a>
-    <h5>
-      <a href="#"><%= sender.first_name %></a>
-    </h5>
+
 
   </div>
   <div class="col-md-11">
-    <p><%= time_ago_in_words(message.created_at) %> ago</p>
+    <strong>
+      <a href="#"><%= sender.first_name %></a>
+    </strong>
     <p><%= message.content %></p>
     <% message.attachments.present? %>
     <% message.attachments.each do |a| %>
     <a href='<%= a.file.remote_url %>' target="_blank"><%= File.basename(a.file.remote_url) %> </a>
     &nbsp&nbsp&nbsp
+
     <% end %>
+    <span><%= time_ago_in_words(message.created_at) %> ago</span>
   </div>
 </div>
 </br>

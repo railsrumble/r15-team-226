@@ -5,7 +5,7 @@
   <div class="comment row">
     <div class="col-md-1 portfolio-item">
       <a href="#">
-        <img src="<%= comment.user.image.try(:remote_url) %>" class="img-circle" height="20" >
+        <img src="<%= comment.user.image.remote_url %>" class="img-circle" height="20" >
       </a>
       <h5>
         <a href="#"><%= comment.user.first_name %></a>

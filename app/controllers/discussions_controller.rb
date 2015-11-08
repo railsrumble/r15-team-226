@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_owner!, only: [:new]
   # GET /discussions
   # GET /discussions.json
   def index

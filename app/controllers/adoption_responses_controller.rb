@@ -24,12 +24,13 @@ class AdoptionResponsesController < ApplicationController
   # POST /adoption_responses
   # POST /adoption_responses.json
   def create
-    @adoption_response = AdoptionResponse.new(adoption_response_params)
-
+    @adoption_request = AdoptionRequest.find(params[:adoption_request_id]) if params.has_key? 'adoption_request_id'
+    @adoption_response = @adoption_request.adoption_responses.new(adoption_response_params) if params.has_key? 'adoption_request_id'
     respond_to do |format|
       if @adoption_response.save
         format.html { redirect_to @adoption_response, notice: 'Adoption response was successfully created.' }
         format.json { render :show, status: :created, location: @adoption_response }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @adoption_response.errors, status: :unprocessable_entity }
@@ -65,6 +66,7 @@ class AdoptionResponsesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_adoption_response
       @adoption_response = AdoptionResponse.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

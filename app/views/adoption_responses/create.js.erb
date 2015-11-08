@@ -1,0 +1,9 @@
+$('.alert-area').html("<div class='alert alert-success alert-dismissable alert-fade margin-top-20'>\
+   <div aria-hidden='true' data-dismiss='alert' class='close' type='button'>x</div>\
+   <center>\
+   Adoption request submitted successfully\
+   </center>\
+</div>");
+console.log("adopt-button-<%= @adoption_request.id %>");
+$("#adopt-button-<%= @adoption_request.id %>").html("<span class='label label-success'>Request sent</span>");
+fade_away_alert();

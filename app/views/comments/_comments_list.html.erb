@@ -1,15 +1,23 @@
-<h1>Add Comment</h2>
-<%= form_for(@comment, :url => discussion_comments_path(@discussion), method: :post, :remote => true)  do |f| %>
-<div class="12u 12u$(xsmall)">
-  <%= f.text_area :content %>
-</div><br>
-<%= f.hidden_field :commentable_id, :value => @discussion.id %>
-<%= f.hidden_field :commentable_type, :value => 'Discussion'%>
-<div class="actions">
-  <%= f.submit "Create"%>
+<div id="comment_list">
+  <h1>Comments:</h1>
+  <% @discussion.comments.each do |comment| %>
+  <div class="comment">
+
+    <p><%= comment.content %></p>
+  </div>
+  <% end %>
 </div>
-<% end %>
-<h1>Comments:</h1>
-<% @discussion.comments.each do |comment| %>
-  <p><%= comment.content %></p>
+
+<% if current_owner.present? %>
+  <h1>Add Comment</h2>
+  <%= form_for(@comment, :remote => true)  do |f| %>
+    <div class="12u 12u$(xsmall)">
+      <%= f.text_area :content %>
+    </div><br>
+    <%= f.hidden_field :commentable_id, :value => @discussion.id %>
+    <%= f.hidden_field :commentable_type, :value => 'Discussion'%>
+    <div class="actions">
+      <%= f.submit "Create"%>
+    </div>
+  <% end %>
 <% end %>

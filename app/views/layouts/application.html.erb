@@ -10,7 +10,7 @@
 
   <!-- Header -->
   <header id="header" class="skel-layers-fixed">
-    <h1><a href="/">Happy Paws</a></h1>
+    <h1><a href="/"><%= image_tag asset_path('logo'), size: '200x95', class: 'img-responsive' %></a></h1>
     <a href="#nav">Menu</a>
   </header>
 
@@ -23,10 +23,12 @@
           <%= show_flash_message(flash) %>
        <% end %>
     </div>
+    
     <%= yield %>
+    
     </div>
   </section>
-  <%= render 'shared/image_gallery_modal' %>
+  <%#= render 'shared/image_gallery_modal' %>
 
   <!-- Footer -->
   <footer id="footer">

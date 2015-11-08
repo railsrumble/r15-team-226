@@ -25,6 +25,7 @@ class DashboardController < ApplicationController
       location = Geocoder.search(params["location"]).first
       @lat = location.geometry["location"]["lat"]
       @lng = location.geometry["location"]["lng"]
+      p "======#{@lat} === #{@lat}"
     end
     render :layout => 'find'
   end

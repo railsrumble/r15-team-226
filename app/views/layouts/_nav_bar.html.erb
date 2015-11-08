@@ -10,6 +10,7 @@
       <li><%= link_to "Sign out", destroy_owner_session_path, { method: :delete } %></li>
     <% else %>
       <li><a href="<%= new_owner_session_path %>">Sign in</a></li>
+      <li><a href="<%= new_owner_registration_path %>">Sign up</a></li>
     <% end %>
   </ul>
 </nav>

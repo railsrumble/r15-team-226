@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='col-lg-2'></div>
   <div class='col-lg-6'>
-
+ <center><h2>Add a Pet</h2></center>
   <%= form_for(@pet, url: owner_pets_path) do |f| %>
     <% if @pet.errors.any? %>
       <div id="error_explanation">
@@ -20,8 +20,10 @@
         Type
       </label>
       <div class='col-sm-9'>
+        <div class="select-wrapper">
         <%= f.select :pet_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
         <%= hidden_field_tag "pet[owner_id]", current_owner.id %>
+      </div>
       </div>
     </div>
 
@@ -54,7 +56,9 @@
         Gender
       </label>
       <div class='col-sm-9'>
+        <div class="select-wrapper">
         <%= f.select :gender, options_for_select([['Select an option', ''], ['Male', 'male'], ['Female', 'female']]), {class: 'form-control', required: :true} %>
+      </div>
       </div>
     </div>
 
@@ -79,7 +83,7 @@
         Area
       </label>
       <div class='col-sm-9'>
-        <%= f.text_field :area, class: 'form-control' %>
+        <%= f.text_field :area, class: 'form-control', id: 'show_user_location' %>
       </div>
     </div>
 
@@ -107,7 +111,7 @@
 
 
 
-    <div class="form-group">
+    <div class="form-group" style="margin-left:140px;">
       <%= f.submit %>
     </div>
   <% end %>

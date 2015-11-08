@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_owner!, only: [:new, :edit, :update, :destroy, :create]
+  #before_filter :get_current_user_location, :only => [:new]
 
   # GET /pets
   # GET /pets.json
@@ -60,6 +61,18 @@ class PetsController < ApplicationController
       format.html { redirect_to owner_dashboard_path, notice: 'Pet was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #get pets in particular location
+  def get_pets
+  p "=================params=================="
+  p params
+  @pets = {}
+  #@pets = Pet.get_pets(pet_params)
+  respond_to do |format|
+    #add latitude and longitude to result
+			format.json { render json: {pets: @pets.to_json} } #, lat: lat, lng: lng
+		end
   end
 
   private

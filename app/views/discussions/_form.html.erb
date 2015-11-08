@@ -17,16 +17,14 @@
     <%= f.text_field :topic %>
   </div><br>
   <div class="6u 12u$(xsmall)">
-    <%= f.label :Image %>
-    <%= f.file_field :image %>
-  </div></br>
-  <div class="6u 12u$(xsmall)">
     <%= f.label :content %>
     <%= f.text_area :content, rows: 5 %>
   </div><br>
   <div class="6u 12u$(xsmall)">
     <%= f.label :type %>
-    <%= f.text_field :discussion_type %>
+    <div class="select-wrapper">
+    <%= f.select :discussion_type, options_for_select([['Select type', ''],['Cat', 'cat'], ['Dog', 'dog']]), {class: 'form-control', required: :true} %>
+  </div>
   </div><br>
   <div class="6u 12u$(xsmall)">
     <%= f.label :breed %>

@@ -234,7 +234,7 @@ if ($('#map').length) {
   getPets(param)
   }
   function getPets(param){
-
+deleteAllMarkers();
   $.ajax({
     type: 'get',
     url: '/get_pets',
@@ -443,7 +443,7 @@ var firstResult = $('#pac-input').val();
         }
       });
       pet_type = $('#pet_pet_type').val();
-      pet_breed = $('#pet_breed').val();;
+      pet_breed = $('#pet_breed').val();
   param = {address: firstResult, lat: lat, lng: lng, pet_type: pet_type, pet_breed: pet_breed  }
   displayMarkers(param)
 }

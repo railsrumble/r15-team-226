@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
    get 'owner_dashboard' => 'dashboard#dashboard'
 
+   get '/find' => 'dashboard#find'
+   get '/get_current_user_location' => 'dashboard#get_current_user_location'
+   get '/get_pets' => 'pets#get_pets'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -62,6 +62,10 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def my_discussions
+    @discussions = current_owner.discussions
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
@@ -70,6 +74,6 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params.require(:discussion).permit(:topic, :content, :discussion_type, :breed, :image, attachments_attributes: [:file])
+      params.require(:discussion).permit(:owner_id, :topic, :content, :discussion_type, :breed, :image, attachments_attributes: [:file])
     end
 end

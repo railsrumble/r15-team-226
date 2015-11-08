@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108054312) do
+ActiveRecord::Schema.define(version: 20151108050642) do
 
   create_table "adoption_requests", force: :cascade do |t|
     t.integer  "owner_id"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20151108054312) do
     t.string   "breed"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "image_uid"
   end
 
   create_table "messages", force: :cascade do |t|

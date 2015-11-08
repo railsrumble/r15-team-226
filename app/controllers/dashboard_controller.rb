@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
   before_action :authenticate_owner!, only: [:dashboard]
+  layout 'application'
   def index
-    render :index, :layout => 'dashboard'
+    render :index
   end
 
   def dashboard
@@ -14,4 +15,5 @@ class DashboardController < ApplicationController
 
 
   end
+
 end

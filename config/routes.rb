@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :attachments
   resources :comments
 
-  resources :disucssions
+  resources :discussions
   resources :owners do
     resources :pets
   end

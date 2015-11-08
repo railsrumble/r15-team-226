@@ -39,3 +39,11 @@
   <strong>Location:</strong>
   <%= @pet.location %>
 </p>
+<div id="links">
+  <% @pet.attachments.each do |attachment| %>
+    <a href="<%= attachment.file.url %>" title="<%= @pet.name %>" data-gallery>
+      <%= image_tag attachment.file.url %>
+    </a>
+  <% end %>
+</div>
+<%= render 'shared/image_gallery_modal' %>

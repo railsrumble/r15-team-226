@@ -12,6 +12,8 @@
  *
  *= require bootstrap.min
  *= require bootstrap-theme.min
+ *= require ./bootstrap-image-gallery/blueimp-gallery.min
+ *= require ./bootstrap-image-gallery/bootstrap-image-gallery.min
  * require_tree .
  *= require_self
  *= require ./retrospect/main.css

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107104916) do
+ActiveRecord::Schema.define(version: 20151108050642) do
 
   create_table "adoption_requests", force: :cascade do |t|
     t.integer  "owner_id"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20151107104916) do
     t.string   "unconfirmed_email"
   end
 
+  add_index "owners", ["confirmation_token"], name: "index_owners_on_confirmation_token", unique: true
   add_index "owners", ["email"], name: "index_owners_on_email", unique: true
   add_index "owners", ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
 

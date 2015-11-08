@@ -5,11 +5,11 @@
 						<h2><%= @discussion.topic %></h2>
 					</header>
 
-					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
-					<p><%= @discussion.content %></p>
+					<a class="image fit" style="width:100%;"><center><%= image_tag @discussion.image.thumb('400x200#').url if @discussion.image_stored? %></center></a>
+				</br><p><%= @discussion.content %></p>
         </br>
-          <p>BREED: <%= @discussion.breed %></p>
-          <p class="pull-right">TYPE: <%= @discussion.discussion_type %></p>
+          <p><strong>BREED:</strong> <%= @discussion.breed %></p>
+          <!-- <p class="pull-right">TYPE: <%= @discussion.discussion_type %></p> -->
 
 
      <div id="comment_list">

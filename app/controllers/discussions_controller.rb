@@ -70,6 +70,6 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params.require(:discussion).permit(:topic, :content, :discussion_type, :breed, attachments_attributes: [:file])
+      params.require(:discussion).permit(:topic, :content, :discussion_type, :breed, :image, attachments_attributes: [:file])
     end
 end

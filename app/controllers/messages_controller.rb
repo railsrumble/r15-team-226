@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     #@messages = Message.all
-    @messages = current_owner.messages_as_receiver
+    @messages = current_owner.messages
   end
 
   # GET /messages/1

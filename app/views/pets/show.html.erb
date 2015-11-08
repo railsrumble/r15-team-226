@@ -4,8 +4,8 @@
 				<div class="inner">
 					<article class="feature left">
             <div id="links">
-                <a href="<%= @pet.attachments.first.file.url %>" title="<%= @pet.name %>" data-gallery>
-                  <%= image_tag @pet.attachments.first.file.url, size: '420x420' %>
+                <a href="<%= @pet.attachments.first.file.url  if @pet.attachments.present? %>" title="<%= @pet.name %>" data-gallery>
+                  <%= image_tag @pet.attachments.first.file.url, size: '420x420'   if @pet.attachments.present? %>
                 </a>
 
             </div>

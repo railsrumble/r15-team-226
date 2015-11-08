@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :adoption_responses
+
   resources :discussions do
     resources :comments
   end
-  resources :adoption_requests
+  resources :adoption_requests do
+    resources :adoption_responses
+  end
   devise_for :owners
   resources :messages
 

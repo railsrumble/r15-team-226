@@ -21,8 +21,16 @@
         <td><%= adoption_request.pet.name if adoption_request.pet %></td>
         <td><%= adoption_request.status %></td>
         <td><%= link_to 'Show', adoption_request %></td>
-        <td><%= link_to 'Edit', edit_adoption_request_path(adoption_request) %></td>
-        <td><%= link_to 'Destroy', adoption_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if adoption_request.created_by_current_owner?(current_owner) %>
+            <%= link_to 'Edit', edit_adoption_request_path(adoption_request) %>
+          <% else %>
+            <div id="adopt-button-<%= adoption_request.id %>">
+              <%= adoption_button(adoption_request) %>
+            </div>
+          <% end %>
+        </td>
+        <td><%= link_to 'Destroy', adoption_request, method: :delete, data: { confirm: 'Are you sure?' } if adoption_request.created_by_current_owner?(current_owner) %></td>
       </tr>
     <% end %>
   </tbody>

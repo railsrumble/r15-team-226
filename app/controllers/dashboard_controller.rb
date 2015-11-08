@@ -18,6 +18,13 @@ class DashboardController < ApplicationController
 
   #Get Google map
   def find
+    p "=======+PARAMS===IN === FIND==========="
+    p params
+    if params["location"].present?
+      location = Geocoder.search(params["location"]).first
+      @lat = location.geometry["location"]["lat"]
+      @lng = location.geometry["location"]["lng"]
+    end
     render :layout => 'find'
   end
 
